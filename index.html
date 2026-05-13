@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dropsmile — Buket Wisuda Cantik Pekalongan</title>
+<meta name="description" content="Buket wisuda cantik mulai Rp10.000. Pesan mudah via WhatsApp, siap dalam 24 jam. Sudah dipercaya 1000+ pelanggan sejak 2021. Pekalongan.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ivory: #FDF6EF;
+    --blush: #F8EDE8;
+    --rose: #E8A5B0;
+    --rose-deep: #C9788A;
+    --gold: #C9985A;
+    --gold-light: #F0D9B5;
+    --plum: #2D1B1E;
+    --plum-mid: #7A4E5A;
+    --white: #FFFFFF;
+    --green-wa: #25D366;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--ivory);
+    color: var(--plum);
+    overflow-x: hidden;
+  }
+  h1, h2, h3, .serif { font-family: 'Cormorant Garamond', serif; }
+
+  /* ─── STICKY WA BUTTON ─── */
+  .wa-sticky {
+    position: fixed;
+    bottom: 24px;
+    right: 20px;
+    z-index: 999;
+    background: var(--green-wa);
+    color: #fff;
+    border-radius: 50px;
+    padding: 14px 22px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 24px rgba(37,211,102,0.35);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .wa-sticky:active { transform: scale(0.96); }
+  .wa-sticky svg { width: 22px; height: 22px; flex-shrink: 0; }
+
+  /* ─── SECTION COMMON ─── */
+  section { padding: 64px 20px; }
+  .section-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .section-title {
+    font-size: clamp(30px, 8vw, 42px);
+    font-weight: 600;
+    line-height: 1.15;
+    color: var(--plum);
+    margin-bottom: 12px;
+  }
+  .section-sub {
+    font-size: 15px;
+    color: var(--plum-mid);
+    line-height: 1.7;
+    margin-bottom: 32px;
+  }
+  .center { text-align: center; }
+  .max-w { max-width: 480px; margin: 0 auto; }
+
+  /* ─── 1. HERO ─── */
+  #hero {
+    padding: 0;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background: linear-gradient(180deg, #F9E8EF 0%, var(--ivory) 100%);
+  }
+  .hero-img-wrap {
+    width: 100%;
+    height: 52svh;
+    overflow: hidden;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .hero-img-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
+  .hero-img-placeholder {
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, #F2C2D0 0%, #E8A5B0 40%, #D4738A 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-img-placeholder span {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 72px;
+    opacity: 0.4;
+    color: #fff;
+  }
+  .hero-badge {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(255,255,255,0.92);
+    border-radius: 50px;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--rose-deep);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .dot-pulse {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #E04A6A;
+    animation: pulse 1.6s infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.75); }
+  }
+  .hero-content {
+    flex: 1;
+    padding: 32px 24px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--gold-light);
+    color: var(--gold);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    width: fit-content;
+  }
+  #hero h1 {
+    font-size: clamp(36px, 11vw, 52px);
+    line-height: 1.1;
+    color: var(--plum);
+    margin-bottom: 14px;
+  }
+  #hero h1 em {
+    color: var(--rose-deep);
+    font-style: italic;
+  }
+  #hero .sub {
+    font-size: 15px;
+    color: var(--plum-mid);
+    line-height: 1.65;
+    margin-bottom: 28px;
+  }
+  .hero-cta {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .btn-primary {
+    background: var(--green-wa);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 17px 24px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:active { background: #1da851; transform: scale(0.98); }
+  .btn-secondary {
+    background: transparent;
+    color: var(--plum);
+    border: 1.5px solid var(--rose);
+    border-radius: 12px;
+    padding: 15px 24px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn-secondary:active { background: var(--blush); }
+
+  /* ─── 2. SOCIAL PROOF ─── */
+  #proof {
+    background: var(--plum);
+    padding: 40px 24px;
+  }
+  .proof-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .proof-item {
+    text-align: center;
+    padding: 20px 8px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 12px;
+  }
+  .proof-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px;
+    font-weight: 600;
+    color: var(--gold-light);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .proof-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.4;
+  }
+  .proof-trust {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+  .trust-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.65);
+  }
+  .trust-badge svg { color: var(--rose); }
+
+  /* ─── 3. PRODUK ─── */
+  #produk { background: var(--white); }
+  .produk-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .produk-card {
+    background: var(--ivory);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(232,165,176,0.25);
+    position: relative;
+  }
+  .produk-card:first-child {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .produk-img {
+    width: 100%;
+    aspect-ratio: 4/5;
+    object-fit: cover;
+  }
+  .produk-img-placeholder {
+    width: 100%;
+    aspect-ratio: 4/5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+  }
+  .p1 { background: linear-gradient(135deg, #F7D0DB, #E8A5B0); }
+  .p2 { background: linear-gradient(135deg, #FAE0C8, #E8C0A0); }
+  .p3 { background: linear-gradient(135deg, #D4EAD0, #A8D0A0); }
+  .p4 { background: linear-gradient(135deg, #D0D8F0, #A8B8E8); }
+  .produk-info { padding: 12px; }
+  .produk-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 4px;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .badge-hot { background: #FFE4E9; color: #C9788A; }
+  .badge-new { background: #E4F5E4; color: #4A8A4A; }
+  .badge-value { background: #FFF3E0; color: var(--gold); }
+  .badge-promo { background: #E4ECF5; color: #4A6A8A; }
+  .produk-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--plum);
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .produk-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--rose-deep);
+  }
+  .produk-price small {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 11px;
+    color: var(--plum-mid);
+    font-weight: 400;
+  }
+  .featured-img-wrap { position: relative; }
+  .featured-content { padding: 20px 16px; display: flex; flex-direction: column; justify-content: center; }
+  .featured-content .produk-name { font-size: 15px; }
+  .featured-content .produk-price { font-size: 26px; }
+  .featured-desc {
+    font-size: 12px;
+    color: var(--plum-mid);
+    line-height: 1.5;
+    margin: 6px 0 14px;
+  }
+  .btn-wa-small {
+    background: var(--green-wa);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+  }
+
+  /* ─── 4. CARA ORDER ─── */
+  #cara { background: var(--blush); }
+  .step-list { display: flex; flex-direction: column; gap: 0; max-width: 480px; margin: 0 auto; }
+  .step {
+    display: flex;
+    gap: 20px;
+    padding: 20px 0;
+    position: relative;
+  }
+  .step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    left: 21px;
+    top: 56px;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, var(--rose), transparent);
+  }
+  .step-num {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--rose);
+    color: #fff;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 1;
+  }
+  .step-body h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--plum);
+    margin-bottom: 4px;
+  }
+  .step-body p {
+    font-size: 14px;
+    color: var(--plum-mid);
+    line-height: 1.6;
+  }
+  .step-body .note {
+    display: inline-block;
+    margin-top: 8px;
+    background: var(--gold-light);
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 4px;
+  }
+
+  /* ─── 5. PRICE LIST ─── */
+  #harga { background: var(--white); }
+  .price-table {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(232,165,176,0.3);
+  }
+  .price-table thead tr { background: var(--plum); }
+  .price-table thead th {
+    color: rgba(255,255,255,0.8);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 14px 16px;
+    text-align: left;
+  }
+  .price-table thead th:last-child { text-align: right; }
+  .price-table tbody tr { border-bottom: 1px solid rgba(232,165,176,0.2); }
+  .price-table tbody tr:last-child { border-bottom: none; }
+  .price-table tbody tr:nth-child(even) { background: var(--blush); }
+  .price-table tbody td {
+    padding: 14px 16px;
+    font-size: 13px;
+    color: var(--plum);
+    vertical-align: middle;
+  }
+  .price-table tbody td:last-child {
+    text-align: right;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--rose-deep);
+  }
+  .price-note {
+    font-size: 13px;
+    color: var(--plum-mid);
+    text-align: center;
+    margin-top: 16px;
+    padding: 14px 20px;
+    background: var(--gold-light);
+    border-radius: 12px;
+    max-width: 480px;
+    margin: 20px auto 0;
+    line-height: 1.6;
+  }
+  .price-note strong { color: var(--gold); }
+
+  /* ─── 6. PROMO ─── */
+  #promo {
+    background: linear-gradient(135deg, var(--plum) 0%, #4A2030 100%);
+    padding: 56px 24px;
+  }
+  .promo-card {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(232,165,176,0.3);
+    border-radius: 20px;
+    padding: 28px 24px;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .promo-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--rose);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+  }
+  .promo-card h2 {
+    font-size: 32px;
+    color: #fff;
+    line-height: 1.15;
+    margin-bottom: 12px;
+  }
+  .promo-card h2 em { color: var(--gold-light); font-style: italic; }
+  .promo-card p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.65;
+    margin-bottom: 24px;
+  }
+  .promo-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+  .promo-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: rgba(255,255,255,0.8);
+  }
+  .promo-list li .check {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: var(--rose);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 12px;
+    color: #fff;
+  }
+  .countdown-wrap {
+    background: rgba(0,0,0,0.25);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 24px;
+  }
+  .countdown-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .countdown {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+  }
+  .cd-item {
+    text-align: center;
+    background: rgba(255,255,255,0.1);
+    border-radius: 8px;
+    padding: 10px 14px;
+    min-width: 52px;
+  }
+  .cd-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1;
+    display: block;
+  }
+  .cd-unit {
+    font-size: 10px;
+    color: rgba(255,255,255,0.45);
+    display: block;
+    margin-top: 3px;
+  }
+  .cd-sep {
+    font-size: 24px;
+    color: rgba(255,255,255,0.3);
+    align-self: center;
+    padding-bottom: 4px;
+  }
+
+  /* ─── 7. GALERI ─── */
+  #galeri { background: var(--ivory); }
+  .galeri-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .galeri-item {
+    aspect-ratio: 1;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    background: var(--blush);
+  }
+  .galeri-item img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s;
+  }
+  .galeri-item:active img { transform: scale(1.05); }
+  .galeri-item-ph {
+    width: 100%; height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+  }
+  .g1 { background: linear-gradient(135deg, #F7D0DB, #E8A5B0); }
+  .g2 { background: linear-gradient(135deg, #FAE0C8, #EDBB8A); }
+  .g3 { background: linear-gradient(135deg, #D4EAD0, #9FCA9A); }
+  .g4 { background: linear-gradient(135deg, #D8D0F0, #B0A0E0); }
+  .g5 { background: linear-gradient(135deg, #F0DDD0, #D8A888); }
+  .g6 { background: linear-gradient(135deg, #D0ECF0, #88C8D8); }
+  .g7 { background: linear-gradient(135deg, #F5E0D0, #E0A888); }
+  .g8 { background: linear-gradient(135deg, #E8D0EC, #C888D8); }
+  .g9 { background: linear-gradient(135deg, #E0ECD0, #A0CC88); }
+  .galeri-item.tall { aspect-ratio: 1 / 2; grid-row: span 2; }
+
+  /* ─── 8. TESTIMONI ─── */
+  #testimoni { background: var(--blush); }
+  .testi-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+  .testi-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 18px;
+    border: 1px solid rgba(232,165,176,0.25);
+  }
+  .testi-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .testi-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .av1 { background: #F7D0DB; color: var(--rose-deep); }
+  .av2 { background: #D4EAD0; color: #4A8A4A; }
+  .av3 { background: #D0D8F0; color: #4A6A8A; }
+  .av4 { background: #FAE0C8; color: #8A6A4A; }
+  .testi-name { font-size: 14px; font-weight: 600; color: var(--plum); }
+  .testi-loc { font-size: 12px; color: var(--plum-mid); }
+  .testi-stars { color: #F5A623; font-size: 13px; letter-spacing: 1px; margin-bottom: 8px; }
+  .testi-text {
+    font-size: 14px;
+    color: var(--plum);
+    line-height: 1.7;
+    font-style: italic;
+  }
+  .testi-tag {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 11px;
+    background: var(--blush);
+    color: var(--rose-deep);
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+  .wa-screenshot {
+    background: #E5DDD5;
+    border-radius: 16px;
+    overflow: hidden;
+    max-width: 480px;
+    margin: 0 auto 16px;
+  }
+  .wa-header {
+    background: #128C7E;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .wa-avatar {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--rose-deep);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #fff;
+    font-weight: 600;
+  }
+  .wa-contact { color: #fff; font-size: 13px; font-weight: 600; }
+  .wa-status { color: rgba(255,255,255,0.65); font-size: 11px; }
+  .wa-body { padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+  .wa-bubble {
+    max-width: 85%;
+    border-radius: 10px;
+    padding: 8px 12px;
+    font-size: 13px;
+    line-height: 1.5;
+    position: relative;
+  }
+  .bubble-in {
+    background: #fff;
+    align-self: flex-start;
+    border-top-left-radius: 2px;
+    color: #1a1a1a;
+  }
+  .bubble-out {
+    background: #DCF8C6;
+    align-self: flex-end;
+    border-top-right-radius: 2px;
+    color: #1a1a1a;
+  }
+  .bubble-time {
+    font-size: 10px;
+    color: rgba(0,0,0,0.4);
+    text-align: right;
+    margin-top: 2px;
+  }
+
+  /* ─── 9. FAQ ─── */
+  #faq { background: var(--white); }
+  .faq-list {
+    max-width: 480px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .faq-item {
+    background: var(--ivory);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(232,165,176,0.2);
+  }
+  .faq-q {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 18px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    text-align: left;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--plum);
+    gap: 12px;
+  }
+  .faq-icon {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: var(--blush);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 16px;
+    color: var(--rose-deep);
+    transition: transform 0.2s, background 0.2s;
+    font-weight: 400;
+    line-height: 1;
+  }
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    font-size: 13.5px;
+    color: var(--plum-mid);
+    line-height: 1.7;
+  }
+  .faq-a.open {
+    max-height: 200px;
+    padding: 0 16px 16px;
+  }
+  .faq-icon.open {
+    transform: rotate(45deg);
+    background: var(--rose);
+    color: #fff;
+  }
+  .faq-a .highlight { color: var(--rose-deep); font-weight: 600; }
+
+  /* ─── 10. FINAL CTA ─── */
+  #cta {
+    background: linear-gradient(160deg, #F9E8EF 0%, var(--ivory) 100%);
+    padding: 72px 24px 100px;
+    text-align: center;
+  }
+  .cta-flower {
+    font-size: 56px;
+    margin-bottom: 20px;
+    display: block;
+    animation: float 3s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  #cta h2 {
+    font-size: clamp(32px, 9vw, 44px);
+    color: var(--plum);
+    line-height: 1.15;
+    margin-bottom: 14px;
+  }
+  #cta h2 em { color: var(--rose-deep); }
+  #cta p {
+    font-size: 15px;
+    color: var(--plum-mid);
+    line-height: 1.7;
+    margin-bottom: 32px;
+    max-width: 340px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .cta-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--green-wa);
+    color: #fff;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 19px 32px;
+    border-radius: 16px;
+    max-width: 400px;
+    margin: 0 auto 16px;
+  }
+  .cta-btn svg { width: 24px; height: 24px; }
+  .cta-note {
+    font-size: 12px;
+    color: var(--plum-mid);
+    opacity: 0.7;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--plum);
+    padding: 32px 24px;
+    text-align: center;
+  }
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--gold-light);
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+  }
+  footer p {
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+    line-height: 1.8;
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── STICKY WA BUTTON ─── -->
+<a href="https://wa.me/6281229658701?text=Halo%20Dropsmile!%20Saya%20mau%20pesan%20buket%20wisuda%20%F0%9F%8C8" class="wa-sticky" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+  Pesan Sekarang
+</a>
+
+<!-- ─── 1. HERO ─── -->
+<section id="hero">
+  <div class="hero-img-wrap">
+    <!-- ════════════════════════════════════════
+       [EDIT 1] FOTO HERO — foto buket paling cantik
+       Hapus baris div placeholder di bawah ini,
+       lalu hapus tanda komentar pada baris <img>
+       ════════════════════════════════════════ -->
+    <img src="foto/hero.jpg" alt="Buket wisuda cantik dari Dropsmile Pekalongan" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
+    <!-- <div class="hero-img-placeholder"><span>🌸</span></div> -->
+    <div class="hero-badge">
+      <span class="dot-pulse"></span>
+      Open Order Wisuda
+    </div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-tag">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      Spesial Musim Wisuda
+    </div>
+    <!-- [EDIT 2] Judul utama hero — bisa ubah sesuai selera -->
+    <h1>Hadiah Wisuda yang<br>Bikin Dia<br><em>Nangis Terharu</em> 🎓</h1>
+    <!-- [EDIT 3] Sub judul hero -->
+    <p class="sub">Buket cantik mulai <strong>Rp10.000</strong> — pesan mudah via WhatsApp, siap dalam 24 jam. Dipercaya 1000+ pelanggan di Pekalongan sejak 2021.</p>
+    <div class="hero-cta">
+      <a href="https://wa.me/62881229658701?text=Halo%20Dropsmile!%20Saya%20mau%20pesan%20buket%20wisuda" class="btn-primary" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5 -.669 -.51 -.173 -.008 -.371 -.01 -.57 -.01 -.198 0 -.52 .074 -.792 .372 -.272 .297 -1.04 1.016 -1.04 2.479 0 1.462 
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5l7 7-7 7M5 12h14"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 2. SOCIAL PROOF ─── -->
+<section id="proof">
+  <div class="proof-grid">
+    <div class="proof-item">
+      <div class="proof-num">1000+</div>
+      <div class="proof-label">Buket Terkirim</div>
+    </div>
+    <div class="proof-item">
+      <div class="proof-num">4.9★</div>
+      <div class="proof-label">Rating Kepuasan</div>
+    </div>
+    <div class="proof-item">
+      <div class="proof-num">Sejak<br>2021</div>
+      <div class="proof-label">Dipercaya Pekalongan</div>
+    </div>
+  </div>
+  <div class="proof-trust">
+    <div class="trust-badge">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+      Terpercaya
+    </div>
+    <div class="trust-badge">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Pembayaran Aman
+    </div>
+    <div class="trust-badge">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      Respon Cepat
+    </div>
+  </div>
+</section>
+
+<!-- ─── 3. PRODUK UNGGULAN ─── -->
+<section id="produk">
+  <div class="max-w center">
+    <p class="section-label">Koleksi Wisuda</p>
+    <h2 class="section-title">Pilih Buket<br>Impianmu</h2>
+    <p class="section-sub">Tersedia dari single flower hingga premium bouquet — semua bisa custom sesuai selera!</p>
+  </div>
+  <div class="produk-grid">
+    <!-- Featured / Terlaris -->
+    <div class="produk-card">
+      <div class="featured-img-wrap">
+        <!-- [EDIT 4] Foto buket TERLARIS → simpan di folder foto/ dengan nama produk1.jpg -->
+        <img src="foto/produk1.jpg" alt="Buket Wisuda Premium" style="width:100%;aspect-ratio:1;object-fit:cover" onerror="this.outerHTML='<div class=&quot;produk-img-placeholder p1&quot; style=&quot;aspect-ratio:1&quot;>🌹</div>'">
+      </div>
+      <div class="featured-content">
+        <span class="produk-badge badge-hot">🔥 Terlaris</span>
+        <div class="produk-name">Buket Wisuda Premium</div>
+        <div class="produk-price">Rp 45.000 <small>/buket</small></div>
+        <p class="featured-desc">Mix flower premium dengan ribbon cantik, cocok untuk kenangan wisuda yang tak terlupakan</p>
+        <a href="https://wa.me/628NOMOR-WA-ANDA?text=Halo!%20Saya%20mau%20pesan%20Buket%20Wisuda%20Premium%20Rp45rb" class="btn-wa-small" target="_blank" rel="noopener">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Pesan Ini
+        </a>
+      </div>
+    </div>
+    <!-- Card 2 -->
+    <div class="produk-card">
+      <!-- [EDIT 5] Foto buket mini → foto/produk2.jpg -->
+      <img src="foto/produk2.jpg" alt="Buket Wisuda Mini" style="width:100%;aspect-ratio:4/5;object-fit:cover" onerror="this.outerHTML='<div class=&quot;produk-img-placeholder p2&quot;>🌻</div>'">
+      <div class="produk-info">
+        <span class="produk-badge badge-value">💰 Hemat</span>
+        <div class="produk-name">Buket Wisuda Mini</div>
+        <div class="produk-price">Rp 25rb <small>↑</small></div>
+      </div>
+    </div>
+    <!-- Card 3 -->
+    <div class="produk-card">
+      <!-- [EDIT 6] Foto single flower → foto/produk3.jpg -->
+      <img src="foto/produk3.jpg" alt="Single Flower" style="width:100%;aspect-ratio:4/5;object-fit:cover" onerror="this.outerHTML='<div class=&quot;produk-img-placeholder p3&quot;>🌷</div>'">
+      <div class="produk-info">
+        <span class="produk-badge badge-new">✨ Unik</span>
+        <div class="produk-name">Single Flower</div>
+        <div class="produk-price">Rp 10rb <small>↑</small></div>
+      </div>
+    </div>
+    <!-- Card 4 -->
+    <div class="produk-card">
+      <!-- [EDIT 7] Foto custom order → foto/produk4.jpg -->
+      <img src="foto/produk4.jpg" alt="Buket Custom" style="width:100%;aspect-ratio:4/5;object-fit:cover" onerror="this.outerHTML='<div class=&quot;produk-img-placeholder p4&quot;>💐</div>'">
+      <div class="produk-info">
+        <span class="produk-badge badge-promo">🎁 Custom</span>
+        <div class="produk-name">Buket Custom</div>
+        <div class="produk-price">Request <small>harga</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 4. CARA ORDER ─── -->
+<section id="cara">
+  <div class="max-w center">
+    <p class="section-label">Gampang Banget</p>
+    <h2 class="section-title">Pesan dalam<br>3 Langkah</h2>
+  </div>
+  <div class="step-list">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h3>Chat WhatsApp</h3>
+        <p>Klik tombol WhatsApp, ceritakan buket impianmu — warna, jenis bunga, budget, dan tanggal wisuda.</p>
+        <span class="note">Respon rata-rata &lt; 15 menit</span>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h3>Pilih &amp; Konfirmasi</h3>
+        <p>Kami kirimkan referensi desain, Kamu pilih yang paling cocok, lalu konfirmasi pesanan. Tidak ada minimum order!</p>
+        <span class="note">Tidak perlu DP dulu</span>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h3>Terima Buket Cantik</h3>
+        <p>Buket disiapkan fresh, dikemas rapi, dan siap dikirim ke lokasi wisudamu di Pekalongan.</p>
+        <span class="note">Siap dalam 24 jam</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 5. PRICE LIST ─── -->
+<section id="harga">
+  <div class="max-w center">
+    <p class="section-label">Transparan &amp; Terjangkau</p>
+    <h2 class="section-title">Harga Jujur,<br>Kualitas Nyata</h2>
+    <p class="section-sub">Semua harga sudah termasuk packaging cantik dan kartu ucapan gratis!</p>
+  </div>
+  <table class="price-table" role="table" aria-label="Daftar harga buket wisuda Dropsmile">
+    <thead>
+      <tr>
+        <th>Paket</th>
+        <th>Isi</th>
+        <th>Harga</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Single Flower</strong><br><span style="font-size:11px;color:#7A4E5A">1 tangkai spesial</span></td>
+        <td>1 bunga + wrap</td>
+        <td>Rp 10rb</td>
+      </tr>
+      <tr>
+        <td><strong>Mini Wisuda</strong><br><span style="font-size:11px;color:#7A4E5A">Simpel &amp; manis</span></td>
+        <td>5–7 tangkai</td>
+        <td>Rp 25rb</td>
+      </tr>
+      <tr>
+        <td><strong>Standard</strong><br><span style="font-size:11px;color:#7A4E5A">Best value</span></td>
+        <td>8–12 tangkai</td>
+        <td>Rp 35rb</td>
+      </tr>
+      <tr style="background: #FFF0F4;">
+        <td><strong>Premium ⭐</strong><br><span style="font-size:11px;color:#C9788A">Terlaris!</span></td>
+        <td>Mix flower + pita</td>
+        <td>Rp 45rb</td>
+      </tr>
+      <tr>
+        <td><strong>Grand Wisuda</strong><br><span style="font-size:11px;color:#7A4E5A">Kesan mewah</span></td>
+        <td>Full bouquet</td>
+        <td>Mulai 75rb</td>
+      </tr>
+      <tr>
+        <td><strong>Custom Order</strong><br><span style="font-size:11px;color:#7A4E5A">Sesuai keinginan</span></td>
+        <td>Request bebas</td>
+        <td>WA dulu</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="price-note">
+    🎁 <strong>Semua paket sudah termasuk</strong> packaging cantik &amp; kartu ucapan!<br>
+    Tidak ada biaya tersembunyi. Tidak ada minimum order.
+  </div>
+</section>
+
+<!-- ─── 6. PROMO AKTIF ─── -->
+<section id="promo">
+  <div class="promo-card">
+    <div class="promo-tag">🎓 Promo Wisuda Juni 2026</div>
+    <h2>Gratis Kartu Ucapan<br><em>Setiap Pembelian</em></h2>
+    <p>Rayakan momen wisuda dengan lebih berkesan. Tambahkan pesan spesial di kartu ucapan custom dari Dropsmile — gratis tanpa minimum order!</p>
+    <ul class="promo-list">
+      <li><span class="check">✓</span> Gratis kartu ucapan custom (nilai Rp 5.000)</li>
+      <li><span class="check">✓</span> Free bubble wrap premium untuk semua pesanan</li>
+      <li><span class="check">✓</span> Foto produk sebelum dikirim via WA</li>
+      <li><span class="check">✓</span> Diskon 10% untuk order &gt; Rp 100.000</li>
+    </ul>
+    <div class="countdown-wrap">
+      <div class="countdown-label">Promo berakhir dalam</div>
+      <div class="countdown">
+        <div class="cd-item"><span class="cd-num" id="cd-d">18</span><span class="cd-unit">Hari</span></div>
+        <span class="cd-sep">:</span>
+        <div class="cd-item"><span class="cd-num" id="cd-h">00</span><span class="cd-unit">Jam</span></div>
+        <span class="cd-sep">:</span>
+        <div class="cd-item"><span class="cd-num" id="cd-m">00</span><span class="cd-unit">Menit</span></div>
+        <span class="cd-sep">:</span>
+        <div class="cd-item"><span class="cd-num" id="cd-s">00</span><span class="cd-unit">Detik</span></div>
+      </div>
+    </div>
+    <a href="https://wa.me/628NOMOR-WA-ANDA?text=Halo!%20Saya%20mau%20klaim%20Promo%20Wisuda%20Juni%20Dropsmile%20%F0%9F%8C8" class="btn-primary" target="_blank" rel="noopener" style="border-radius:12px;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Klaim Promo Sekarang
+    </a>
+  </div>
+</section>
+
+<!-- ─── VIDEO ─── -->
+<!-- [EDIT 9] SECTION VIDEO — opsional
+     Jika punya video proses/unboxing, upload ke YouTube (unlisted),
+     lalu ganti KODE_VIDEO_YOUTUBE di bawah dengan ID video Anda.
+     Contoh: https://youtube.com/watch?v=ABC123def → ID-nya adalah ABC123def
+     Jika tidak ada video, hapus seluruh section ini -->
+<section id="video" style="background:#fff;padding:48px 24px;">
+  <div class="max-w center">
+    <p class="section-label">Behind The Scenes</p>
+    <h2 class="section-title">Dibuat dengan<br>Penuh Cinta</h2>
+    <p class="section-sub">Setiap buket kami rangkai sendiri dengan bahan-bahan segar pilihan</p>
+  </div>
+  <div style="max-width:480px;margin:0 auto;border-radius:16px;overflow:hidden;aspect-ratio:9/16;background:#f0e8e8;">
+    <iframe
+      src="https://www.youtube.com/embed/KODE_VIDEO_YOUTUBE"
+      title="Video proses pembuatan buket Dropsmile"
+      style="width:100%;height:100%;border:none;"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+      loading="lazy">
+    </iframe>
+  </div>
+</section>
+
+<!-- ─── 7. GALERI ─── -->
+<section id="galeri">
+  <div class="max-w center">
+    <p class="section-label">Portfolio</p>
+    <h2 class="section-title">Karya Kami<br>yang Sudah Terkirim</h2>
+    <p class="section-sub">Setiap buket dibuat dengan cinta dan perhatian penuh 💕</p>
+  </div>
+  <div class="galeri-grid" role="list" aria-label="Galeri buket Dropsmile">
+    <!-- Ganti div placeholder dengan <img> tag foto Anda -->
+    <!-- [EDIT 8] Galeri foto — simpan foto di folder foto/ dengan nama galeri-1.jpg sampai galeri-9.jpg -->
+    <div class="galeri-item tall" role="listitem"><img src="foto/galeri-1.jpg" alt="Buket Dropsmile 1" style="width:100%;height:100%;object-fit:cover" onerror="this.outerHTML='<div class=&quot;galeri-item-ph g1&quot;>🌹</div>'"></div>
+    <div class="galeri-item" role="listitem"><img src="foto/galeri-2.jpg" alt="Buket Dropsmile 2" style="width:100%;height:100%;object-fit:cover" onerror="this.outerHTML='<div class=&quot;galeri-item-ph g2&quot;>🌻</div>'"></div>
+    <div class="galeri-item" role="listitem"><img src="foto/galeri-3.jpg" alt="Buket Dropsmile 3" style="width:100%;height:100%;object-fit:cover" onerror="this.outerHTML='<div class=&quot;galeri-item-ph g3&quot;>🌷</div>'"></div>
+    <div class="galeri-item" role="listitem"><img src="foto/galeri-4.jpg" alt="Buket Dropsmile 4" style="width:100%;height:100%;object-fit:cover" onerror="this.outerHTML='<div class=&quot;galeri-item-ph g4&quot;>💐</div>'"></div>
+    <div class="galeri-item" role="listitem"><img src="foto/galeri-5.jpg" alt="Buket Dropsmile 5" style="width:100%;height:100%;object-fit:cover" onerror="this.outerHTML='<div class=&quot;galeri-item-ph g5&quot;>🌸</div>'"></div>
+    <div class="galeri-item tall" role="listitem"><img src="foto/galeri-6.jpg" alt="Buket Dropsmile 6" style="width:100%;height:100%;object-fit:cover" onerror="this.outerHTML='<div class=&quot;galeri-item-ph g6&quot;>🌺</div>'"></div>
+    <div class="galeri-item" role="listitem"><img src="foto/galeri-7.jpg" alt="Buket Dropsmile 7" style="width:100%;height:100%;object-fit:cover" onerror="this.outerHTML='<div class=&quot;galeri-item-ph g7&quot;>🌼</div>'"></div>
+    <div class="galeri-item" role="listitem"><img src="foto/galeri-8.jpg" alt="Buket Dropsmile 8" style="width:100%;height:100%;object-fit:cover" onerror="this.outerHTML='<div class=&quot;galeri-item-ph g8&quot;>💮</div>'"></div>
+    <div class="galeri-item" role="listitem"><img src="foto/galeri-9.jpg" alt="Buket Dropsmile 9" style="width:100%;height:100%;object-fit:cover" onerror="this.outerHTML='<div class=&quot;galeri-item-ph g9&quot;>🏵️</div>'"></div>
+  </div>
+  <div style="text-align:center; margin-top: 24px;">
+    <a href="https://wa.me/628NOMOR-WA-ANDA?text=Halo!%20Saya%20mau%20lihat%20lebih%20banyak%20portfolio%20Dropsmile" class="btn-secondary" style="display:inline-flex; max-width:280px;" target="_blank" rel="noopener">
+      Lihat Portfolio Lengkap
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5l7 7-7 7M5 12h14"/></svg>
+    </a>
+  </div>
+</section>
+
+<!-- ─── 8. TESTIMONI ─── -->
+<section id="testimoni">
+  <div class="max-w center">
+    <p class="section-label">Kata Mereka</p>
+    <h2 class="section-title">1000+ Pelanggan<br>Sudah Puas</h2>
+  </div>
+
+  <!-- WA Screenshot Style -->
+  <div class="wa-screenshot" role="img" aria-label="Screenshot percakapan testimoni pelanggan">
+    <div class="wa-header">
+      <div class="wa-avatar">S</div>
+      <div>
+        <div class="wa-contact">Siti R. — Pelanggan Wisuda</div>
+        <div class="wa-status">Pekalongan</div>
+      </div>
+    </div>
+    <div class="wa-body">
+      <div class="wa-bubble bubble-in">
+        Kak buketnya udah sampe!! Cantik banget omg 😭💕 persis kayak yang aku minta warnanya
+        <div class="bubble-time">10:24</div>
+      </div>
+      <div class="wa-bubble bubble-out">
+        Alhamdulillah kak, seneng banget dengernya 🙏 selamat wisuda ya!
+        <div class="bubble-time">10:26</div>
+      </div>
+      <div class="wa-bubble bubble-in">
+        Temen2 pada nanya beli dimana, udah aku kasih nomor dropsmile hehe. Pasti balik lagi nih buat wisuda adik kelas
+        <div class="bubble-time">10:28</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Review Cards -->
+  <div class="testi-list">
+    <div class="testi-card">
+      <div class="testi-header">
+        <div class="testi-avatar av1">A</div>
+        <div>
+          <div class="testi-name">Aulia N.</div>
+          <div class="testi-loc">Pekalongan · Wisuda S1</div>
+        </div>
+      </div>
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Pesan H-1 wisuda masih bisa, Alhamdulillah! Buketnya cantik banget, packaging rapih, harganya juga murah banget untuk kualitas segini. Mamaku sampe nanya beli dimana 😭"</p>
+      <span class="testi-tag">Buket Premium Rp 45rb</span>
+    </div>
+    <div class="testi-card">
+      <div class="testi-header">
+        <div class="testi-avatar av2">R</div>
+        <div>
+          <div class="testi-name">Riana P.</div>
+          <div class="testi-loc">Batang · Wisuda D3</div>
+        </div>
+      </div>
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Sudah 3x order di sini! Mulai dari wisuda sendiri, wisuda sahabat, sampai ulang tahun orang tua. Selalu memuaskan, ga pernah mengecewakan. Recommended banget!"</p>
+      <span class="testi-tag">Repeat Order 3x</span>
+    </div>
+    <div class="testi-card">
+      <div class="testi-header">
+        <div class="testi-avatar av3">D</div>
+        <div>
+          <div class="testi-name">Dika M.</div>
+          <div class="testi-loc">Pekalongan · Wisuda S1</div>
+        </div>
+      </div>
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Awalnya ragu karena harga murah, tapi ternyata kualitasnya premium banget! Buket mini Rp 25rb aja sudah bikin pacar nangis terharu pas dikasih waktu wisuda hehe"</p>
+      <span class="testi-tag">Buket Mini Rp 25rb</span>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 9. FAQ ─── -->
+<section id="faq">
+  <div class="max-w center">
+    <p class="section-label">Pertanyaan Umum</p>
+    <h2 class="section-title">Ada yang Ingin<br>Kamu Tanyakan?</h2>
+  </div>
+  <div class="faq-list" role="list">
+    <div class="faq-item" role="listitem">
+      <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+        Berapa minimal order di Dropsmile?
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-a"><span class="highlight">Tidak ada minimal order!</span> Pesan 1 single flower pun kami layani dengan sepenuh hati. Budget mulai Rp 10.000 sudah bisa dapat buket cantik.</div>
+    </div>
+    <div class="faq-item" role="listitem">
+      <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+        Apakah bisa custom warna atau jenis bunga?
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-a">Tentu bisa! Justru kami <span class="highlight">spesialis custom order</span>. Chat kami via WhatsApp dan ceritakan keinginanmu — warna, jenis bunga, tema, ukuran, budget — kami carikan solusi terbaiknya.</div>
+    </div>
+    <div class="faq-item" role="listitem">
+      <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+        Berapa lama waktu pembuatan?
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-a">Standar kami <span class="highlight">siap dalam 24 jam</span> setelah konfirmasi. Untuk order mendadak (H-1 bahkan pagi hari wisuda), hubungi kami dulu ya — kami usahakan semaksimal mungkin!</div>
+    </div>
+    <div class="faq-item" role="listitem">
+      <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+        Apakah ada pengiriman?
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-a">Kami melayani <span class="highlight">area Pekalongan dan sekitarnya</span>. Untuk pengiriman luar kota, silakan konfirmasi via WhatsApp untuk informasi ongkos kirim dan ketersediaan.</div>
+    </div>
+    <div class="faq-item" role="listitem">
+      <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+        Bagaimana cara pembayaran?
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-a">Kami menerima transfer bank, e-wallet (GoPay, OVO, DANA), dan COD khusus area tertentu. <span class="highlight">Bayar setelah buket jadi dan Kamu setuju</span> — aman dan transparan.</div>
+    </div>
+    <div class="faq-item" role="listitem">
+      <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+        Apakah foto produk dikirim sebelum pengiriman?
+        <span class="faq-icon" aria-hidden="true">+</span>
+      </button>
+      <div class="faq-a"><span class="highlight">Selalu!</span> Kami selalu kirimkan foto buket yang sudah jadi via WhatsApp sebelum dikirim ke lokasimu — supaya kamu puas dan yakin dulu 💕</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 10. FINAL CTA ─── -->
+<section id="cta">
+  <span class="cta-flower" role="img" aria-label="bunga">🌸</span>
+  <h2 class="serif">Buat Momen Wisudanya<br>Tak <em>Terlupakan</em></h2>
+  <p>Yuk, mulai chat sekarang! Ceritakan wisuda impianmu dan biarkan kami wujudkan buket yang sempurna untuknya.</p>
+  <a href="https://wa.me/628NOMOR-WA-ANDA?text=Halo%20Dropsmile!%20Saya%20mau%20pesan%20buket%20wisuda%20%F0%9F%8C8%20boleh%20minta%20info%20lengkapnya%3F" class="cta-btn" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+    Chat WhatsApp Sekarang
+  </a>
+  <p class="cta-note">Respon cepat · Tidak ada minimum order · Harga transparan</p>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-brand">dropsmile</div>
+  <p>
+    Florist &amp; Buket Pekalongan sejak 2021<br>
+    dropsmile.gift · Pekalongan, Jawa Tengah<br><br>
+    © 2026 Dropsmile. All rights reserved.
+  </p>
+</footer>
+
+<script>
+  /* ─── FAQ Toggle ─── */
+  function toggleFaq(btn) {
+    var icon = btn.querySelector('.faq-icon');
+    var answer = btn.nextElementSibling;
+    var isOpen = answer.classList.contains('open');
+    document.querySelectorAll('.faq-a.open').forEach(function(el) {
+      el.classList.remove('open');
+      el.previousElementSibling.querySelector('.faq-icon').classList.remove('open');
+      el.previousElementSibling.setAttribute('aria-expanded', 'false');
+    });
+    if (!isOpen) {
+      answer.classList.add('open');
+      icon.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  }
+
+  /* ─── Countdown Timer ─── */
+  (function () {
+    var end = new Date('2026-06-30T23:59:59');
+    function update() {
+      var now = new Date();
+      var diff = Math.max(0, end - now);
+      var d = Math.floor(diff / 86400000);
+      var h = Math.floor((diff % 86400000) / 3600000);
+      var m = Math.floor((diff % 3600000) / 60000);
+      var s = Math.floor((diff % 60000) / 1000);
+      function pad(n) { return String(n).padStart(2, '0'); }
+      var dEl = document.getElementById('cd-d');
+      var hEl = document.getElementById('cd-h');
+      var mEl = document.getElementById('cd-m');
+      var sEl = document.getElementById('cd-s');
+      if (dEl) dEl.textContent = pad(d);
+      if (hEl) hEl.textContent = pad(h);
+      if (mEl) mEl.textContent = pad(m);
+      if (sEl) sEl.textContent = pad(s);
+    }
+    update();
+    setInterval(update, 1000);
+  })();
+</script>
+
+</body>
+</html>
