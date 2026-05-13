@@ -7,29 +7,33 @@
 <meta name="description" content="Buket wisuda cantik mulai Rp10.000. Pesan mudah via WhatsApp, siap dalam 24 jam. Sudah dipercaya 1000+ pelanggan sejak 2021. Pekalongan.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ivory: #FDF6EF;
-    --blush: #F8EDE8;
-    --rose: #E8A5B0;
-    --rose-deep: #C9788A;
-    --gold: #C9985A;
-    --gold-light: #F0D9B5;
-    --plum: #2D1B1E;
-    --plum-mid: #7A4E5A;
-    --white: #FFFFFF;
-    --green-wa: #25D366;
+    /* ─ Brand Palette (dari Meta Ads Dropsmile) ─ */
+    --ivory:      #FDF4E8;      /* cream background */
+    --blush:      #F9E4E8;      /* soft pink section bg */
+    --rose:       #F2C2CF;      /* blush accent */
+    --rose-deep:  #D4648A;      /* pink CTA / tags */
+    --gold:       #E8B42A;      /* PRIMARY — golden yellow */
+    --gold-dark:  #C99A1A;      /* gold hover */
+    --gold-light: #FBF0C8;      /* gold tint bg */
+    --brown:      #6B4228;      /* dark warm brown (plum replacement) */
+    --brown-mid:  #9A6845;      /* medium brown */
+    --brown-light:#C4956A;      /* light brown text */
+    --white:      #FFFFFF;
+    --green-wa:   #25D366;
+    --overlay:    rgba(42,26,14,0.82); /* photo text overlay */
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
     font-family: 'Plus Jakarta Sans', sans-serif;
     background: var(--ivory);
-    color: var(--plum);
+    color: var(--brown);
     overflow-x: hidden;
   }
-  h1, h2, h3, .serif { font-family: 'Cormorant Garamond', serif; }
+  h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
 
   /* ─── STICKY WA BUTTON ─── */
   .wa-sticky {
@@ -57,23 +61,36 @@
   /* ─── SECTION COMMON ─── */
   section { padding: 64px 20px; }
   .section-label {
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.15em;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 10px;
+    color: var(--brown);
+    margin-bottom: 12px;
+    font-style: italic;
+  }
+  .section-label::before {
+    content: '';
+    display: inline-block;
+    width: 28px;
+    height: 3px;
+    background: var(--gold);
+    border-radius: 2px;
+    flex-shrink: 0;
   }
   .section-title {
     font-size: clamp(30px, 8vw, 42px);
     font-weight: 600;
     line-height: 1.15;
-    color: var(--plum);
+    color: var(--brown);
     margin-bottom: 12px;
   }
   .section-sub {
     font-size: 15px;
-    color: var(--plum-mid);
+    color: var(--brown-mid);
     line-height: 1.7;
     margin-bottom: 32px;
   }
@@ -87,46 +104,92 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    background: linear-gradient(180deg, #F9E8EF 0%, var(--ivory) 100%);
+    background: var(--brown);
+  }
+  /* header strip — like ads */
+  #hero::before {
+    content: '';
+    display: block;
+    height: 6px;
+    background: var(--gold);
+    width: 100%;
+    position: absolute;
+    top: 0; left: 0; z-index: 10;
   }
   .hero-img-wrap {
     width: 100%;
-    height: 52svh;
+    flex: 1;
     overflow: hidden;
     position: relative;
-    flex-shrink: 0;
+    min-height: 60svh;
   }
   .hero-img-wrap img {
     width: 100%; height: 100%;
     object-fit: cover;
     object-position: center top;
   }
+  /* dark gradient overlay like ads */
+  .hero-img-wrap::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 30%, var(--overlay) 100%);
+    pointer-events: none;
+  }
   .hero-img-placeholder {
     width: 100%; height: 100%;
-    background: linear-gradient(135deg, #F2C2D0 0%, #E8A5B0 40%, #D4738A 100%);
+    min-height: 60svh;
+    background: linear-gradient(135deg, #8B5E3C 0%, #5A3520 100%);
     display: flex;
     align-items: center;
     justify-content: center;
   }
   .hero-img-placeholder span {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 72px;
-    opacity: 0.4;
+    font-size: 80px;
+    opacity: 0.3;
     color: #fff;
   }
+  /* ads-style category badge top bar */
   .hero-badge {
     position: absolute;
-    top: 20px;
+    top: 14px;
     left: 20px;
-    background: rgba(255,255,255,0.92);
-    border-radius: 50px;
-    padding: 6px 14px;
+    right: 20px;
+    z-index: 11;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: none;
+    border-radius: 0;
+    padding: 0;
     font-size: 12px;
     font-weight: 600;
-    color: var(--rose-deep);
+    color: var(--brown);
+    pointer-events: none;
+  }
+  .hero-badge-cat {
+    font-style: italic;
+    font-size: 12px;
+    color: var(--brown);
+    background: var(--gold);
+    padding: 4px 14px;
+    border-radius: 0 0 8px 8px;
+    margin-top: -14px;
+    font-weight: 600;
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 6px;
+  }
+  .hero-badge-cat .dot-pulse { background: var(--brown); }
+  .hero-badge-brand {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--gold);
+    background: rgba(42,26,14,0.5);
+    padding: 4px 12px;
+    border-radius: 4px;
+    margin-top: -6px;
   }
   .dot-pulse {
     width: 7px; height: 7px;
@@ -163,7 +226,7 @@
   #hero h1 {
     font-size: clamp(36px, 11vw, 52px);
     line-height: 1.1;
-    color: var(--plum);
+    color: var(--brown);
     margin-bottom: 14px;
   }
   #hero h1 em {
@@ -172,7 +235,7 @@
   }
   #hero .sub {
     font-size: 15px;
-    color: var(--plum-mid);
+    color: var(--brown-mid);
     line-height: 1.65;
     margin-bottom: 28px;
   }
@@ -201,7 +264,7 @@
   .btn-primary:active { background: #1da851; transform: scale(0.98); }
   .btn-secondary {
     background: transparent;
-    color: var(--plum);
+    color: var(--brown);
     border: 1.5px solid var(--rose);
     border-radius: 12px;
     padding: 15px 24px;
@@ -220,7 +283,7 @@
 
   /* ─── 2. SOCIAL PROOF ─── */
   #proof {
-    background: var(--plum);
+    background: var(--brown);
     padding: 40px 24px;
   }
   .proof-grid {
@@ -240,13 +303,13 @@
     font-family: 'Cormorant Garamond', serif;
     font-size: 34px;
     font-weight: 600;
-    color: var(--gold-light);
+    color: var(--gold);
     line-height: 1;
     margin-bottom: 6px;
   }
   .proof-label {
     font-size: 11px;
-    color: rgba(255,255,255,0.55);
+    color: rgba(255,255,255,0.6);
     line-height: 1.4;
   }
   .proof-trust {
@@ -266,7 +329,18 @@
   .trust-badge svg { color: var(--rose); }
 
   /* ─── 3. PRODUK ─── */
-  #produk { background: var(--white); }
+  #produk {
+    background: var(--ivory);
+    position: relative;
+  }
+  #produk::before {
+    content: '';
+    display: block;
+    height: 4px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    position: absolute;
+    top: 0; left: 0; right: 0;
+  }
   .produk-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -321,37 +395,37 @@
   .produk-name {
     font-size: 13px;
     font-weight: 600;
-    color: var(--plum);
+    color: var(--brown);
     margin-bottom: 4px;
     line-height: 1.3;
   }
   .produk-price {
-    font-family: 'Cormorant Garamond', serif;
+    font-family: 'Playfair Display', serif;
     font-size: 20px;
     font-weight: 600;
-    color: var(--rose-deep);
+    color: var(--gold-dark);
   }
   .produk-price small {
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 11px;
-    color: var(--plum-mid);
+    color: var(--brown-mid);
     font-weight: 400;
   }
   .featured-img-wrap { position: relative; }
   .featured-content { padding: 20px 16px; display: flex; flex-direction: column; justify-content: center; }
   .featured-content .produk-name { font-size: 15px; }
-  .featured-content .produk-price { font-size: 26px; }
+  .featured-content .produk-price { font-size: 26px; color: var(--gold); }
   .featured-desc {
     font-size: 12px;
-    color: var(--plum-mid);
+    color: var(--brown-mid);
     line-height: 1.5;
     margin: 6px 0 14px;
   }
   .btn-wa-small {
-    background: var(--green-wa);
-    color: #fff;
+    background: var(--gold);
+    color: var(--brown);
     border: none;
-    border-radius: 8px;
+    border-radius: 50px;
     padding: 10px 16px;
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 13px;
@@ -364,7 +438,7 @@
   }
 
   /* ─── 4. CARA ORDER ─── */
-  #cara { background: var(--blush); }
+  #cara { background: var(--gold-light); }
   .step-list { display: flex; flex-direction: column; gap: 0; max-width: 480px; margin: 0 auto; }
   .step {
     display: flex;
@@ -379,15 +453,15 @@
     top: 56px;
     bottom: 0;
     width: 2px;
-    background: linear-gradient(to bottom, var(--rose), transparent);
+    background: linear-gradient(to bottom, var(--gold), transparent);
   }
   .step-num {
     width: 44px;
     height: 44px;
     border-radius: 50%;
-    background: var(--rose);
-    color: #fff;
-    font-family: 'Cormorant Garamond', serif;
+    background: var(--gold);
+    color: var(--brown);
+    font-family: 'Playfair Display', serif;
     font-size: 22px;
     font-weight: 600;
     display: flex;
@@ -401,19 +475,19 @@
     font-family: 'Cormorant Garamond', serif;
     font-size: 22px;
     font-weight: 600;
-    color: var(--plum);
+    color: var(--brown);
     margin-bottom: 4px;
   }
   .step-body p {
     font-size: 14px;
-    color: var(--plum-mid);
+    color: var(--brown-mid);
     line-height: 1.6;
   }
   .step-body .note {
     display: inline-block;
     margin-top: 8px;
-    background: var(--gold-light);
-    color: var(--gold);
+    background: var(--gold);
+    color: var(--brown);
     font-size: 11px;
     font-weight: 600;
     padding: 4px 10px;
@@ -431,7 +505,7 @@
     overflow: hidden;
     border: 1px solid rgba(232,165,176,0.3);
   }
-  .price-table thead tr { background: var(--plum); }
+  .price-table thead tr { background: var(--brown); }
   .price-table thead th {
     color: rgba(255,255,255,0.8);
     font-size: 11px;
@@ -442,13 +516,13 @@
     text-align: left;
   }
   .price-table thead th:last-child { text-align: right; }
-  .price-table tbody tr { border-bottom: 1px solid rgba(232,165,176,0.2); }
+  .price-table tbody tr { border-bottom: 1px solid rgba(232,165,176,0.25); }
   .price-table tbody tr:last-child { border-bottom: none; }
   .price-table tbody tr:nth-child(even) { background: var(--blush); }
   .price-table tbody td {
     padding: 14px 16px;
     font-size: 13px;
-    color: var(--plum);
+    color: var(--brown);
     vertical-align: middle;
   }
   .price-table tbody td:last-child {
@@ -460,11 +534,12 @@
   }
   .price-note {
     font-size: 13px;
-    color: var(--plum-mid);
+    color: var(--brown-mid);
     text-align: center;
     margin-top: 16px;
     padding: 14px 20px;
     background: var(--gold-light);
+    border: 1.5px solid var(--gold);
     border-radius: 12px;
     max-width: 480px;
     margin: 20px auto 0;
@@ -474,7 +549,7 @@
 
   /* ─── 6. PROMO ─── */
   #promo {
-    background: linear-gradient(135deg, var(--plum) 0%, #4A2030 100%);
+    background: linear-gradient(135deg, var(--brown) 0%, #3A1A08 100%);
     padding: 56px 24px;
   }
   .promo-card {
@@ -489,8 +564,8 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    background: var(--rose);
-    color: #fff;
+    background: var(--gold);
+    color: var(--brown);
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.1em;
@@ -529,13 +604,13 @@
   .promo-list li .check {
     width: 22px; height: 22px;
     border-radius: 50%;
-    background: var(--rose);
+    background: var(--gold);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
     font-size: 12px;
-    color: #fff;
+    color: var(--brown);
   }
   .countdown-wrap {
     background: rgba(0,0,0,0.25);
@@ -626,7 +701,7 @@
   .galeri-item.tall { aspect-ratio: 1 / 2; grid-row: span 2; }
 
   /* ─── 8. TESTIMONI ─── */
-  #testimoni { background: var(--blush); }
+  #testimoni { background: var(--gold-light); }
   .testi-list {
     display: flex;
     flex-direction: column;
@@ -661,12 +736,12 @@
   .av2 { background: #D4EAD0; color: #4A8A4A; }
   .av3 { background: #D0D8F0; color: #4A6A8A; }
   .av4 { background: #FAE0C8; color: #8A6A4A; }
-  .testi-name { font-size: 14px; font-weight: 600; color: var(--plum); }
-  .testi-loc { font-size: 12px; color: var(--plum-mid); }
+  .testi-name { font-size: 14px; font-weight: 600; color: var(--brown); }
+  .testi-loc { font-size: 12px; color: var(--brown-mid); }
   .testi-stars { color: #F5A623; font-size: 13px; letter-spacing: 1px; margin-bottom: 8px; }
   .testi-text {
     font-size: 14px;
-    color: var(--plum);
+    color: var(--brown);
     line-height: 1.7;
     font-style: italic;
   }
@@ -674,11 +749,11 @@
     display: inline-block;
     margin-top: 10px;
     font-size: 11px;
-    background: var(--blush);
-    color: var(--rose-deep);
+    background: var(--gold-light);
+    color: var(--brown-mid);
     padding: 3px 10px;
     border-radius: 4px;
-    font-weight: 500;
+    font-weight: 600;
   }
   .wa-screenshot {
     background: #E5DDD5;
@@ -736,7 +811,7 @@
   }
 
   /* ─── 9. FAQ ─── */
-  #faq { background: var(--white); }
+  #faq { background: var(--ivory); }
   .faq-list {
     max-width: 480px;
     margin: 0 auto;
@@ -745,7 +820,7 @@
     gap: 2px;
   }
   .faq-item {
-    background: var(--ivory);
+    background: var(--white);
     border-radius: 12px;
     overflow: hidden;
     border: 1px solid rgba(232,165,176,0.2);
@@ -763,19 +838,19 @@
     font-family: 'Plus Jakarta Sans', sans-serif;
     font-size: 14px;
     font-weight: 600;
-    color: var(--plum);
+    color: var(--brown);
     gap: 12px;
   }
   .faq-icon {
     width: 24px; height: 24px;
     border-radius: 50%;
-    background: var(--blush);
+    background: var(--gold-light);
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
     font-size: 16px;
-    color: var(--rose-deep);
+    color: var(--gold-dark);
     transition: transform 0.2s, background 0.2s;
     font-weight: 400;
     line-height: 1;
@@ -785,7 +860,7 @@
     overflow: hidden;
     transition: max-height 0.3s ease, padding 0.3s ease;
     font-size: 13.5px;
-    color: var(--plum-mid);
+    color: var(--brown-mid);
     line-height: 1.7;
   }
   .faq-a.open {
@@ -794,14 +869,14 @@
   }
   .faq-icon.open {
     transform: rotate(45deg);
-    background: var(--rose);
-    color: #fff;
+    background: var(--gold);
+    color: var(--brown);
   }
-  .faq-a .highlight { color: var(--rose-deep); font-weight: 600; }
+  .faq-a .highlight { color: var(--gold-dark); font-weight: 700; }
 
   /* ─── 10. FINAL CTA ─── */
   #cta {
-    background: linear-gradient(160deg, #F9E8EF 0%, var(--ivory) 100%);
+    background: linear-gradient(160deg, var(--gold-light) 0%, var(--ivory) 100%);
     padding: 72px 24px 100px;
     text-align: center;
   }
@@ -817,14 +892,14 @@
   }
   #cta h2 {
     font-size: clamp(32px, 9vw, 44px);
-    color: var(--plum);
+    color: var(--brown);
     line-height: 1.15;
     margin-bottom: 14px;
   }
   #cta h2 em { color: var(--rose-deep); }
   #cta p {
     font-size: 15px;
-    color: var(--plum-mid);
+    color: var(--brown-mid);
     line-height: 1.7;
     margin-bottom: 32px;
     max-width: 340px;
@@ -843,20 +918,45 @@
     font-weight: 700;
     text-decoration: none;
     padding: 19px 32px;
-    border-radius: 16px;
+    border-radius: 50px;
     max-width: 400px;
     margin: 0 auto 16px;
   }
   .cta-btn svg { width: 24px; height: 24px; }
   .cta-note {
     font-size: 12px;
-    color: var(--plum-mid);
+    color: var(--brown-mid);
     opacity: 0.7;
   }
 
+  /* ─── ADDITIONAL BUTTON VARIANTS ─── */
+  /* secondary on light background */
+  .btn-secondary-dark {
+    background: transparent;
+    color: var(--brown);
+    border: 1.5px solid var(--brown);
+    border-radius: 50px;
+    padding: 14px 24px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn-secondary-dark:hover, .btn-secondary-dark:active {
+    background: var(--gold-light);
+  }
+  /* CTA section */
+  #cta h2 em { color: var(--gold-dark); }
+
   /* ─── FOOTER ─── */
   footer {
-    background: var(--plum);
+    background: var(--brown);
     padding: 32px 24px;
     text-align: center;
   }
@@ -902,7 +1002,7 @@
     .step:not(:last-child)::after {
       left: 50%; top: 22px; bottom: auto;
       width: 100%; height: 2px;
-      background: linear-gradient(to right, var(--rose), transparent);
+      background: linear-gradient(to right, var(--gold), transparent);
     }
     .step-body .note { display: block; margin: 8px auto 0; width: fit-content; }
 
@@ -940,16 +1040,16 @@
       z-index: 1000;
       padding: 0 60px;
       height: 68px;
-      background: rgba(253,246,239,0.92);
+      background: rgba(253,244,232,0.96);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(232,165,176,0.2);
+      border-bottom: 1px solid rgba(232,165,176,0.25);
     }
     .nav-brand {
       font-family: 'Cormorant Garamond', serif;
       font-size: 26px;
       font-weight: 600;
-      color: var(--plum);
+      color: var(--brown);
       text-decoration: none;
       letter-spacing: 0.03em;
     }
@@ -962,14 +1062,14 @@
     .nav-links a {
       font-size: 13.5px;
       font-weight: 500;
-      color: var(--plum-mid);
+      color: var(--brown-mid);
       text-decoration: none;
       transition: color 0.2s;
     }
-    .nav-links a:hover { color: var(--rose-deep); }
+    .nav-links a:hover { color: var(--gold-dark); }
     .nav-wa {
-      background: var(--green-wa);
-      color: #fff !important;
+      background: var(--gold);
+      color: var(--brown) !important;
       padding: 10px 20px;
       border-radius: 50px;
       font-weight: 600 !important;
@@ -1106,8 +1206,8 @@
     footer p { font-size: 14px; }
 
     /* ── Hover effects on desktop ── */
-    .btn-primary:hover  { background: #1da851; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,211,102,0.3); }
-    .btn-secondary:hover { background: var(--blush); }
+    .btn-primary:hover  { background: #1da851; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,211,102,0.35); }
+    .btn-secondary:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.7); }
     .galeri-item:hover img { transform: scale(1.07); }
     .produk-card { transition: transform 0.2s, box-shadow 0.2s; }
     .produk-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(45,27,30,0.1); }
@@ -1158,14 +1258,16 @@
     <img src="foto/hero.jpg" alt="Buket wisuda cantik dari Dropsmile Pekalongan" style="width:100%;height:100%;object-fit:cover;object-position:center top;">
     <!-- <div class="hero-img-placeholder"><span>🌸</span></div> -->
     <div class="hero-badge">
-      <span class="dot-pulse"></span>
-      Open Order Wisuda
+      <div class="hero-badge-cat">
+        <span class="dot-pulse"></span>
+        Spesial Wisuda
+      </div>
+      <div class="hero-badge-brand">Dropsmile.gift</div>
     </div>
   </div>
   <div class="hero-content">
     <div class="hero-tag">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-      Spesial Musim Wisuda
+      🎓 Spesial Musim Wisuda
     </div>
     <!-- [EDIT 2] Judul utama hero — bisa ubah sesuai selera -->
     <h1>Hadiah Wisuda yang<br>Bikin Dia<br><em>Nangis Terharu</em> 🎓</h1>
@@ -1180,6 +1282,11 @@
         Lihat Portfolio
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5l7 7-7 7M5 12h14"/></svg>
       </a>
+    </div>
+    <div class="hero-trust">
+      <span class="hero-trust-pill">✓ Bisa COD</span>
+      <span class="hero-trust-pill">✓ Bisa Kirim</span>
+      <span class="hero-trust-pill">✓ No Min Order</span>
     </div>
   </div>
 </section>
@@ -1232,9 +1339,9 @@
       </div>
       <div class="featured-content">
         <span class="produk-badge badge-hot">🔥 Terlaris</span>
-        <div class="produk-name">Buket Wisuda Premium</div>
+        <div class="produk-name">Buket Snack + Teddy Toga</div>
         <div class="produk-price">Rp 45.000 <small>/buket</small></div>
-        <p class="featured-desc">Mix flower premium dengan ribbon cantik, cocok untuk kenangan wisuda yang tak terlupakan</p>
+        <p class="featured-desc">Buket snack Astor + Teddy Bear toga — unik, manis, dan berkesan untuk momen wisuda</p>
         <a href="https://wa.me/6281229658701?text=Halo!%20Saya%20mau%20pesan%20Buket%20Wisuda%20Premium%20Rp45rb" class="btn-wa-small" target="_blank" rel="noopener">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           Pesan Ini
@@ -1246,9 +1353,9 @@
       <!-- [EDIT 5] Foto buket mini → foto/produk2.jpg -->
       <img src="foto/produk2.jpg" alt="Buket Wisuda Mini" style="width:100%;aspect-ratio:4/5;object-fit:cover" onerror="this.outerHTML='<div class=&quot;produk-img-placeholder p2&quot;>🌻</div>'">
       <div class="produk-info">
-        <span class="produk-badge badge-value">💰 Hemat</span>
-        <div class="produk-name">Buket Wisuda Mini</div>
-        <div class="produk-price">Rp 25rb <small>↑</small></div>
+        <span class="produk-badge badge-hot">💑 Couple</span>
+        <div class="produk-name">Buket Couple Edition</div>
+        <div class="produk-price">Rp 45rb <small>↑</small></div>
       </div>
     </div>
     <!-- Card 3 -->
@@ -1256,9 +1363,9 @@
       <!-- [EDIT 6] Foto single flower → foto/produk3.jpg -->
       <img src="foto/produk3.jpg" alt="Single Flower" style="width:100%;aspect-ratio:4/5;object-fit:cover" onerror="this.outerHTML='<div class=&quot;produk-img-placeholder p3&quot;>🌷</div>'">
       <div class="produk-info">
-        <span class="produk-badge badge-new">✨ Unik</span>
-        <div class="produk-name">Single Flower</div>
-        <div class="produk-price">Rp 10rb <small>↑</small></div>
+        <span class="produk-badge badge-new">✨ Custom</span>
+        <div class="produk-name">Buket Costum Skincare</div>
+        <div class="produk-price">Request <small>harga</small></div>
       </div>
     </div>
     <!-- Card 4 -->
@@ -1267,7 +1374,7 @@
       <img src="foto/produk4.jpg" alt="Buket Custom" style="width:100%;aspect-ratio:4/5;object-fit:cover" onerror="this.outerHTML='<div class=&quot;produk-img-placeholder p4&quot;>💐</div>'">
       <div class="produk-info">
         <span class="produk-badge badge-promo">🎁 Custom</span>
-        <div class="produk-name">Buket Custom</div>
+        <div class="produk-name">Buket Snack Meriah</div>
         <div class="produk-price">Request <small>harga</small></div>
       </div>
     </div>
@@ -1414,7 +1521,7 @@
     <div class="galeri-item" role="listitem"><img src="foto/galeri-9.jpg" alt="Buket Dropsmile 9" style="width:100%;height:100%;object-fit:cover" onerror="this.outerHTML='<div class=&quot;galeri-item-ph g9&quot;>🏵️</div>'"></div>
   </div>
   <div style="text-align:center; margin-top: 24px;">
-    <a href="https://wa.me/6281229658701?text=Halo!%20Saya%20mau%20lihat%20lebih%20banyak%20portfolio%20Dropsmile" class="btn-secondary" style="display:inline-flex; max-width:280px;" target="_blank" rel="noopener">
+    <a href="https://wa.me/6281229658701?text=Halo!%20Saya%20mau%20lihat%20lebih%20banyak%20portfolio%20Dropsmile" class="btn-secondary-dark" target="_blank" rel="noopener">
       Lihat Portfolio Lengkap
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5l7 7-7 7M5 12h14"/></svg>
     </a>
@@ -1425,7 +1532,7 @@
 <section id="testimoni">
   <div class="max-w center">
     <p class="section-label">Kata Mereka</p>
-    <h2 class="section-title">1000+ Pelanggan<br>Sudah Puas</h2>
+    <h2 class="section-title">1000+ Buket<br>Sudah Terkirim 💛</h2>
   </div>
 
   <!-- WA Screenshot Style -->
