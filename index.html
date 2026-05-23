@@ -97,7 +97,7 @@
   .center { text-align: center; }
   .max-w { max-width: 480px; margin: 0 auto; }
 
-  /* ─── 1. HERO — full-bleed background photo ─── */
+  /* ─── 1. HERO — full-bleed photo, text overlaid ─── */
   #hero {
     padding: 0;
     min-height: 100svh;
@@ -106,17 +106,7 @@
     flex-direction: column;
     overflow: hidden;
   }
-  /* gold strip at very top — like ads header bar */
-  #hero::before {
-    content: '';
-    display: block;
-    height: 6px;
-    background: var(--gold);
-    width: 100%;
-    position: absolute;
-    top: 0; left: 0; z-index: 10;
-  }
-  /* background photo layer */
+  /* background photo — covers entire hero */
   .hero-img-wrap {
     position: absolute;
     inset: 0;
@@ -125,54 +115,46 @@
   .hero-img-wrap img {
     width: 100%; height: 100%;
     object-fit: cover;
-    object-position: center top;
+    object-position: center center;
   }
-  /* layered gradient: top = semi-dark for badge readability,
-     bottom = heavier dark for text readability */
+  /* warm light overlay — photo still visible, like reference */
   .hero-img-wrap::after {
     content: '';
     position: absolute;
     inset: 0;
-    background:
-      linear-gradient(to bottom,
-        rgba(42,26,14,0.55) 0%,
-        rgba(42,26,14,0.15) 30%,
-        rgba(42,26,14,0.25) 55%,
-        rgba(42,26,14,0.88) 100%);
+    background: linear-gradient(
+      160deg,
+      rgba(253,244,232,0.55) 0%,
+      rgba(253,244,232,0.25) 40%,
+      rgba(42,26,14,0.15) 70%,
+      rgba(42,26,14,0.45) 100%
+    );
     pointer-events: none;
   }
   .hero-img-placeholder {
     width: 100%; height: 100%;
-    background: linear-gradient(135deg, #8B5E3C 0%, #3A1A08 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: linear-gradient(135deg, #D4A96A 0%, #8B5E3C 100%);
+    display: flex; align-items: center; justify-content: center;
   }
-  .hero-img-placeholder span {
-    font-size: 100px;
-    opacity: 0.2;
-    color: #fff;
-  }
-  /* ads-style badge — top bar over photo */
+  .hero-img-placeholder span { font-size: 100px; opacity: 0.3; color: #fff; }
+
+  /* badge top bar — ads style */
   .hero-badge {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
+    top: 0; left: 0; right: 0;
     z-index: 11;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    padding: 0;
     pointer-events: none;
   }
   .hero-badge-cat {
     font-style: italic;
-    font-size: 12px;
+    font-size: 11px;
     color: var(--brown);
     background: var(--gold);
-    padding: 8px 18px;
-    border-radius: 0 0 10px 0;
+    padding: 7px 16px;
+    border-radius: 0 0 8px 0;
     font-weight: 700;
     display: flex;
     align-items: center;
@@ -185,10 +167,11 @@
     font-style: italic;
     font-size: 13px;
     color: var(--gold);
-    background: rgba(42,26,14,0.55);
-    padding: 8px 16px;
-    border-radius: 0 0 0 10px;
+    background: rgba(42,26,14,0.4);
+    padding: 7px 14px;
+    border-radius: 0 0 0 8px;
     letter-spacing: 0.02em;
+    backdrop-filter: blur(4px);
   }
   .dot-pulse {
     width: 7px; height: 7px;
@@ -1087,7 +1070,7 @@
     .max-w { max-width: 1100px; }
     section { padding: 96px 60px; }
 
-    /* ── Hero — full bleed on desktop too ── */
+    /* ── Hero — full bleed on desktop ── */
     #hero {
       flex-direction: column;
       min-height: 100vh;
@@ -1100,12 +1083,11 @@
       height: 100%;
     }
     .hero-content {
-      max-width: 700px;
-      padding: 72px 80px 88px;
+      max-width: 680px;
+      padding: 80px 80px 96px;
       margin-top: auto;
-      margin-left: 0;
     }
-    #hero h1 { font-size: clamp(48px, 5vw, 72px); }
+    #hero h1 { font-size: clamp(52px, 5.5vw, 78px); }
     .hero-cta { flex-direction: row; max-width: 480px; }
     .btn-primary  { flex: 1.4; }
     .btn-secondary { flex: 1; }
@@ -1430,7 +1412,7 @@
       🎓 Spesial Musim Wisuda
     </div>
     <!-- [EDIT 2] Judul utama hero — bisa ubah sesuai selera -->
-    <h1>Hadiah Wisuda yang<br>Bikin Dia<br><em>Nangis Terharu</em> 🎓</h1>
+    <h1>Setiap Hadiah<br>Memiliki Kisahnya<br>Tersenyumlah<br><em>Ketika Mengingatnya</em> 🎓</h1>
     <!-- [EDIT 3] Sub judul hero -->
     <p class="sub">Buket cantik mulai <strong>Rp20.000</strong> — pesan mudah via WhatsApp, siap dalam 24 jam. Dipercaya 1000+ pelanggan di Pekalongan sejak 2021.</p>
     <div class="hero-cta">
@@ -1886,8 +1868,105 @@
 
 
 <script>
-  // NOTE: Duplicate/older notification code removed — using consolidated
-  // notification & progress implementation below.
+  // ════════════════════════════════════════
+  // PROMO URGENCY SYSTEM — Sequential Pop-ups
+  // Reset: 06:00 | Start: 2/10 | Increment: +1 every 2.5 hours
+  // ════════════════════════════════════════
+
+  // Random Indonesian names for authenticity
+  const randomNames = [
+    'Bagas', 'Rini', 'Doni', 'Siti', 'Ahmad', 'Dewi', 'Budi', 'Maya',
+    'Andi', 'Lina', 'Hendra', 'Putri', 'Reza', 'Novi', 'Tarno', 'Siska',
+    'Joko', 'Eka', 'Bambang', 'Ratih', 'Yudi', 'Nana', 'Riski', 'Dina'
+  ];
+
+  // ── Calculate current progress based on time ──
+  function getProgressCount() {
+    const now = new Date();
+    const resetHour = 6; // Reset at 06:00
+    
+    let hoursElapsed = now.getHours() - resetHour;
+    if (hoursElapsed < 0) hoursElapsed += 24;
+    
+    // Increment +1 setiap 2.5 jam
+    let increment = Math.floor(hoursElapsed / 2.5);
+    let count = 2 + increment; // Start from 2
+    return Math.min(count, 10);
+  }
+
+  // ── Random name picker ──
+  function getRandomName() {
+    return randomNames[Math.floor(Math.random() * randomNames.length)];
+  }
+
+  // ── Show toast notification ──
+  function showToast(title, message, duration = 5000) {
+    const container = document.getElementById('toast-container');
+    
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.innerHTML = \`
+      <div class="toast-title">\${title}</div>
+      <div class="toast-message">\${message}</div>
+    \`;
+    
+    container.appendChild(toast);
+    
+    // Auto remove after duration
+    setTimeout(() => {
+      toast.classList.add('removing');
+      setTimeout(() => toast.remove(), 300);
+    }, duration);
+  }
+
+  // ── Sequential pop-ups on page load ──
+  function triggerSequentialNotifs() {
+    // Check if already shown in this session
+    const sessionKey = 'dropsmile_notif_' + new Date().toDateString();
+    
+    if (sessionStorage.getItem(sessionKey)) {
+      return; // Don't repeat in same session/day
+    }
+    
+    const currentCount = getProgressCount();
+    const remainingSlots = 10 - currentCount;
+    const randomName = getRandomName();
+    
+    // ── POP-UP 1 (Instant) ──
+    setTimeout(() => {
+      showToast(
+        '✅ Kemarin promo sold out',
+        \`Kita masih promo, \${currentCount} pembeli sudah pesan\`,
+        5000
+      );
+    }, 500);
+    
+    // ── POP-UP 2 (3-4 menit) ──
+    const notif2Delay = Math.random() * (240000 - 180000) + 180000; // 3-4 menit
+    setTimeout(() => {
+      showToast(
+        \`📦 \${randomName} baru memesan Rp 55rb\`,
+        \`Sisa \${remainingSlots} slot 🎓\`,
+        5000
+      );
+    }, notif2Delay);
+    
+    // ── POP-UP 3 (6-8 menit) ──
+    const notif3Delay = Math.random() * (480000 - 360000) + 360000; // 6-8 menit
+    setTimeout(() => {
+      showToast(
+        '💬 Customer baru sedang mengirim pesan',
+        'Jangan sampai kehabisan! 🚀',
+        5000
+      );
+    }, notif3Delay);
+    
+    // Mark as shown
+    sessionStorage.setItem(sessionKey, true);
+  }
+
+  // Trigger on page load
+  // window.addEventListener('load', triggerSequentialNotifs);
 
   /* ════════════════════════════════════════
      SALES PROGRESS & NOTIFICATION SYSTEM
