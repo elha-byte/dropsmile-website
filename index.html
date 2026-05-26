@@ -9,1429 +9,1414 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-  :root {
-    /* ─ Brand Palette (dari Meta Ads Dropsmile) ─ */
-    --ivory:      #FDF4E8;      /* cream background */
-    --blush:      #F9E4E8;      /* soft pink section bg */
-    --rose:       #F2C2CF;      /* blush accent */
-    --rose-deep:  #D4648A;      /* pink CTA / tags */
-    --gold:       #E8B42A;      /* PRIMARY — golden yellow */
-    --gold-dark:  #C99A1A;      /* gold hover */
-    --gold-light: #FBF0C8;      /* gold tint bg */
-    --brown:      #6B4228;      /* dark warm brown (plum replacement) */
-    --brown-mid:  #9A6845;      /* medium brown */
-    --brown-light:#C4956A;      /* light brown text */
-    --white:      #FFFFFF;
-    --green-wa:   #25D366;
-    --overlay:    rgba(42,26,14,0.82); /* photo text overlay */
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    background: var(--ivory);
-    color: var(--brown);
-    overflow-x: hidden;
-  }
-  h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
 
-  /* ─── STICKY WA BUTTON ─── */
-  .wa-sticky {
-    position: fixed;
-    bottom: 24px;
-    right: 20px;
-    z-index: 999;
-    background: var(--green-wa);
-    color: #fff;
-    border-radius: 50px;
-    padding: 14px 22px;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 15px;
-    font-weight: 600;
-    text-decoration: none;
+/* ═══════════════════════════════════════════
+   ROOT VARIABLES — Brand Dropsmile
+═══════════════════════════════════════════ */
+:root {
+  --ivory:       #FDF4E8;
+  --blush:       #F9E4E8;
+  --rose:        #F2C2CF;
+  --rose-deep:   #D4648A;
+  --gold:        #E8B42A;
+  --gold-dark:   #C99A1A;
+  --gold-light:  #FBF0C8;
+  --brown:       #6B4228;
+  --brown-mid:   #9A6845;
+  --brown-light: #C4956A;
+  --white:       #FFFFFF;
+  --green-wa:    #25D366;
+  --overlay:     rgba(42,26,14,0.82);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--ivory);
+  color: var(--brown);
+  overflow-x: hidden;
+}
+h1, h2, h3, .serif { font-family: 'Playfair Display', serif; }
+
+/* ═══════════════════════════════════════════
+   STICKY WA BUTTON
+═══════════════════════════════════════════ */
+.wa-sticky {
+  position: fixed;
+  bottom: 88px;
+  right: 20px;
+  z-index: 998;
+  background: var(--green-wa);
+  color: #fff;
+  border-radius: 50px;
+  padding: 14px 22px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 24px rgba(37,211,102,0.35);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.wa-sticky:active { transform: scale(0.96); }
+.wa-sticky svg { width: 22px; height: 22px; flex-shrink: 0; }
+
+/* ═══════════════════════════════════════════
+   SECTION COMMON
+═══════════════════════════════════════════ */
+section { padding: 64px 20px; }
+
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--brown-mid);
+  margin-bottom: 10px;
+  font-style: italic;
+}
+.section-label::before {
+  content: '';
+  display: inline-block;
+  width: 28px;
+  height: 2.5px;
+  background: var(--gold);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.section-title {
+  font-size: clamp(28px, 7.5vw, 40px);
+  font-weight: 700;
+  line-height: 1.12;
+  color: var(--brown);
+  margin-bottom: 10px;
+}
+.section-sub {
+  font-size: 14px;
+  color: var(--brown-mid);
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+.center { text-align: center; }
+.max-w  { max-width: 480px; margin: 0 auto; }
+
+/* ═══════════════════════════════════════════
+   1. HERO — Full-bleed photo, Maison Bloom style
+═══════════════════════════════════════════ */
+#hero {
+  padding: 0;
+  min-height: 100svh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* background photo */
+.hero-img-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.hero-img-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center center;
+}
+
+/* gradient overlay — warm top, darker bottom for text */
+.hero-img-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(253,244,232,0.25) 0%,
+    rgba(253,244,232,0.05) 30%,
+    rgba(42,26,14,0.30) 60%,
+    rgba(42,26,14,0.78) 100%
+  );
+  pointer-events: none;
+}
+
+.hero-img-placeholder {
+  width: 100%; height: 100%;
+  background: linear-gradient(135deg, #E8D0A8 0%, #C4956A 100%);
+  display: flex; align-items: center; justify-content: center;
+}
+.hero-img-placeholder span { font-size: 100px; opacity: 0.25; }
+
+/* badge pojok atas — ads style */
+.hero-badge {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  z-index: 11;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  pointer-events: none;
+}
+.hero-badge-cat {
+  background: var(--gold);
+  color: var(--brown);
+  font-size: 11px;
+  font-weight: 700;
+  font-style: italic;
+  padding: 8px 18px;
+  border-radius: 0 0 8px 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: 0.03em;
+}
+.hero-badge-brand {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 13px;
+  color: var(--gold);
+  background: rgba(42,26,14,0.5);
+  padding: 8px 14px;
+  border-radius: 0 0 0 8px;
+  backdrop-filter: blur(6px);
+}
+
+/* dot pulse */
+.dot-pulse {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--brown);
+  animation: pulse 1.6s infinite;
+}
+@keyframes pulse {
+  0%,100% { opacity:1; transform:scale(1); }
+  50% { opacity:0.4; transform:scale(0.7); }
+}
+
+/* eyebrow label */
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 18px;
+}
+.hero-eyebrow::before {
+  content: '';
+  display: block;
+  width: 32px; height: 1.5px;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+/* hero content — text over photo, anchored bottom */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  margin-top: auto;
+  padding: 36px 24px 20px;
+  background: transparent;
+}
+.hero-tag { display: none; }
+
+/* headline */
+#hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(36px, 11vw, 56px);
+  font-weight: 700;
+  line-height: 1.08;
+  color: #fff;
+  text-shadow: 0 2px 20px rgba(42,26,14,0.4);
+  margin-bottom: 14px;
+  letter-spacing: -0.01em;
+}
+#hero h1 em {
+  color: var(--gold);
+  font-style: italic;
+}
+
+/* sub */
+#hero .sub {
+  font-size: 14px;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.82);
+  margin-bottom: 0;
+}
+
+/* CTA bars — full width, like Maison Bloom */
+.hero-cta {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 0 -24px;
+  margin-top: 24px;
+}
+#hero .btn-primary {
+  background: var(--gold);
+  color: var(--brown);
+  border: none;
+  border-radius: 0;
+  padding: 18px 24px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(107,66,40,0.12);
+  box-shadow: none;
+}
+#hero .btn-secondary {
+  background: rgba(255,255,255,0.12);
+  color: #fff;
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.15);
+  border-radius: 0;
+  padding: 18px 24px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+}
+#hero .btn-secondary svg { display: none; }
+
+/* trust bar */
+.hero-trust {
+  display: flex;
+  gap: 0;
+  background: rgba(42,26,14,0.45);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid rgba(255,255,255,0.1);
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+.hero-trust-pill {
+  flex: 1;
+  text-align: center;
+  color: rgba(255,255,255,0.8);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 12px 8px;
+  border-right: 1px solid rgba(255,255,255,0.1);
+  background: transparent;
+  border-top: none;
+  border-bottom: none;
+  border-left: none;
+}
+.hero-trust-pill:last-child { border-right: none; }
+
+/* ── PRICE TABLE — Premium row highlight ── */
+.price-table tr.row-premium {
+  background: linear-gradient(90deg, #FBF0C8 0%, #FDF4E8 100%);
+  position: relative;
+}
+.price-table tr.row-premium td {
+  border-top: 2px solid var(--gold);
+  border-bottom: 2px solid var(--gold);
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+.price-table tr.row-premium td:first-child {
+  border-left: 3px solid var(--gold);
+}
+.price-table tr.row-premium td:last-child {
+  border-right: 3px solid var(--gold);
+}
+.badge-popular {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--brown);
+  font-size: 9px;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 4px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+
+
+.price-promo-wrap {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.price-original {
+  font-size: 12px;
+  color: #b0907a;
+  text-decoration: line-through;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 500;
+  line-height: 1;
+}
+.price-badge-save {
+  display: inline-block;
+  background: #FF4D4D;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.04em;
+  margin-left: 4px;
+  vertical-align: middle;
+  line-height: 1.4;
+}
+.price-now {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--gold-dark);
+  line-height: 1.1;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.price-now small {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 11px;
+  color: var(--brown-mid);
+  font-weight: 500;
+}
+
+/* Table promo cell */
+.td-price-promo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  align-items: flex-end;
+}
+.td-original {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 12px;
+  color: #b0907a;
+  text-decoration: line-through;
+  font-weight: 500;
+  line-height: 1;
+}
+.td-save-badge {
+  display: inline-block;
+  background: #FF4D4D;
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 5px;
+  border-radius: 3px;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+}
+.td-now {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--gold-dark);
+  line-height: 1;
+}
+
+/* Promo paragraph inline */
+s.price-strike {
+  color: #b0907a;
+  font-size: 0.9em;
+}
+.inline-price-new {
+  color: var(--gold-dark);
+  font-weight: 700;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05em;
+}
+
+
+.highlight-gold {
+  color: var(--gold);
+  font-weight: 700;
+  font-style: italic;
+}
+
+/* scroll indicator */
+.hero-scroll {
+  text-align: center;
+  padding: 12px;
+  background: rgba(42,26,14,0.55);
+  backdrop-filter: blur(8px);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.hero-scroll::before {
+  content: '';
+  display: block;
+  width: 1px; height: 18px;
+  background: var(--gold);
+  animation: scrollPulse 1.8s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%,100% { opacity:1; transform:scaleY(1); }
+  50% { opacity:0.3; transform:scaleY(0.5); }
+}
+
+/* ═══════════════════════════════════════════
+   2. SOCIAL PROOF
+═══════════════════════════════════════════ */
+#proof {
+  background: linear-gradient(135deg, var(--brown) 0%, #3A1A08 100%);
+  padding: 40px 24px;
+  position: relative;
+}
+#proof::before {
+  content: '';
+  display: block;
+  height: 4px;
+  background: var(--gold);
+  position: absolute;
+  top: 0; left: 0; right: 0;
+}
+.proof-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+.proof-item {
+  text-align: center;
+  padding: 20px 8px;
+  background: rgba(255,255,255,0.07);
+  border-radius: 12px;
+}
+.proof-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 34px;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.proof-label {
+  font-size: 11px;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.4;
+}
+.proof-trust {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 24px;
+  flex-wrap: wrap;
+}
+.trust-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.6);
+}
+
+/* ═══════════════════════════════════════════
+   3. PRODUK
+═══════════════════════════════════════════ */
+#produk {
+  background: var(--ivory);
+  position: relative;
+}
+#produk::before {
+  content: '';
+  display: block;
+  height: 4px;
+  background: linear-gradient(to right, var(--gold), transparent);
+  position: absolute;
+  top: 0; left: 0; right: 0;
+}
+.produk-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+.produk-card {
+  background: var(--white);
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(232,165,176,0.2);
+  position: relative;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.produk-card:first-child {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.produk-img { width: 100%; aspect-ratio: 4/5; object-fit: cover; }
+.produk-img-placeholder {
+  width: 100%; aspect-ratio: 4/5;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 40px;
+}
+.p1 { background: linear-gradient(135deg,#F7D0DB,#E8A5B0); }
+.p2 { background: linear-gradient(135deg,#FAE0C8,#E8C0A0); }
+.p3 { background: linear-gradient(135deg,#D4EAD0,#A8D0A0); }
+.p4 { background: linear-gradient(135deg,#D0D8F0,#A8B8E8); }
+.produk-info { padding: 12px; }
+.produk-badge {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 4px;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.badge-hot   { background:#FFE4E9; color:#C9788A; }
+.badge-new   { background:#E4F5E4; color:#4A8A4A; }
+.badge-value { background:#FFF3E0; color:var(--gold); }
+.badge-promo { background:#E4ECF5; color:#4A6A8A; }
+.produk-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--brown);
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+.produk-price {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--gold-dark);
+}
+.produk-price small {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 11px;
+  color: var(--brown-mid);
+  font-weight: 400;
+}
+.featured-img-wrap { position: relative; }
+.featured-content {
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.featured-content .produk-name { font-size: 15px; }
+.featured-content .produk-price { font-size: 22px; color: var(--gold-dark); }
+.featured-desc {
+  font-size: 12px;
+  color: var(--brown-mid);
+  line-height: 1.5;
+  margin: 6px 0 12px;
+}
+.btn-wa-small {
+  background: var(--gold);
+  color: var(--brown);
+  border: none;
+  border-radius: 50px;
+  padding: 10px 16px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+/* ═══════════════════════════════════════════
+   4. CARA ORDER
+═══════════════════════════════════════════ */
+#cara { background: var(--gold-light); }
+.step-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  max-width: 480px;
+  margin: 0 auto;
+}
+.step {
+  display: flex;
+  gap: 20px;
+  padding: 20px 0;
+  position: relative;
+}
+.step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 21px; top: 56px; bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+}
+.step-num {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--brown);
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+.step-body h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--brown);
+  margin-bottom: 4px;
+}
+.step-body p {
+  font-size: 14px;
+  color: var(--brown-mid);
+  line-height: 1.6;
+}
+.step-body .note {
+  display: inline-block;
+  margin-top: 8px;
+  background: var(--gold);
+  color: var(--brown);
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 4px;
+}
+
+/* ═══════════════════════════════════════════
+   5. PRICE LIST
+═══════════════════════════════════════════ */
+#harga { background: var(--white); }
+.price-table {
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  border-collapse: collapse;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(232,165,176,0.25);
+}
+.price-table thead tr { background: var(--brown); }
+.price-table thead th {
+  color: rgba(255,255,255,0.8);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 14px 14px;
+  text-align: left;
+}
+.price-table thead th:last-child { text-align: right; }
+.price-table tbody tr { border-bottom: 1px solid rgba(232,165,176,0.18); }
+.price-table tbody tr:last-child { border-bottom: none; }
+.price-table tbody tr:nth-child(even) { background: var(--blush); }
+.price-table tbody td {
+  padding: 13px 14px;
+  font-size: 13px;
+  color: var(--brown);
+  vertical-align: middle;
+}
+.price-table tbody td:last-child {
+  text-align: right;
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--gold-dark);
+}
+.price-note {
+  font-size: 13px;
+  color: var(--brown-mid);
+  text-align: center;
+  padding: 14px 20px;
+  background: var(--gold-light);
+  border: 1.5px solid var(--gold);
+  border-radius: 12px;
+  max-width: 480px;
+  margin: 18px auto 0;
+  line-height: 1.6;
+}
+.price-note strong { color: var(--gold-dark); }
+
+/* ═══════════════════════════════════════════
+   6. PROMO
+═══════════════════════════════════════════ */
+#promo {
+  background: linear-gradient(135deg, var(--brown) 0%, #3A1A08 100%);
+  padding: 56px 20px;
+}
+.promo-card {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(232,165,176,0.25);
+  border-radius: 20px;
+  padding: 28px 22px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+.promo-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--gold);
+  color: var(--brown);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  border-radius: 4px;
+  margin-bottom: 14px;
+}
+.promo-card h2 {
+  font-size: 30px;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.15;
+  margin-bottom: 10px;
+}
+.promo-card h2 em { color: var(--gold); font-style: italic; }
+.promo-card > p {
+  font-size: 14px;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.65;
+  margin-bottom: 20px;
+}
+.promo-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+.promo-list li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: rgba(255,255,255,0.82);
+}
+.promo-list li .check {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 12px;
+  color: var(--brown);
+  font-weight: 700;
+}
+
+/* Progress bar */
+.progress-wrap { margin-bottom: 24px; }
+.progress-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.progress-track {
+  background: rgba(255,255,255,0.14);
+  border-radius: 12px;
+  height: 26px;
+  overflow: hidden;
+  margin-bottom: 8px;
+  position: relative;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold), #F5D547);
+  border-radius: 12px;
+  width: 20%;
+  transition: width 0.6s cubic-bezier(0.34,1.56,0.64,1);
+}
+.progress-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: rgba(255,255,255,0.78);
+  font-weight: 500;
+}
+.progress-note {
+  margin-top: 12px;
+  padding: 12px 14px;
+  background: rgba(0,0,0,0.22);
+  border-radius: 8px;
+  border-left: 3px solid var(--gold);
+  font-size: 12px;
+  color: rgba(255,255,255,0.78);
+  line-height: 1.6;
+}
+
+/* promo CTA btn */
+.btn-primary {
+  background: var(--green-wa);
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 16px 24px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  box-shadow: 0 4px 16px rgba(37,211,102,0.3);
+}
+.btn-primary:active { background: #1da851; transform: scale(0.97); }
+
+/* ═══════════════════════════════════════════
+   7. GALERI
+═══════════════════════════════════════════ */
+#galeri { background: var(--ivory); }
+.galeri-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+.galeri-item {
+  aspect-ratio: 1;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  background: var(--blush);
+}
+.galeri-item img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s;
+}
+.galeri-item:active img { transform: scale(1.05); }
+.galeri-item-ph {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px;
+}
+.g1 { background: linear-gradient(135deg,#F7D0DB,#E8A5B0); }
+.g2 { background: linear-gradient(135deg,#FAE0C8,#EDBB8A); }
+.g3 { background: linear-gradient(135deg,#D4EAD0,#9FCA9A); }
+.g4 { background: linear-gradient(135deg,#D8D0F0,#B0A0E0); }
+.g5 { background: linear-gradient(135deg,#F0DDD0,#D8A888); }
+.g6 { background: linear-gradient(135deg,#D0ECF0,#88C8D8); }
+.g7 { background: linear-gradient(135deg,#F5E0D0,#E0A888); }
+.g8 { background: linear-gradient(135deg,#E8D0EC,#C888D8); }
+.g9 { background: linear-gradient(135deg,#E0ECD0,#A0CC88); }
+.galeri-item.tall { aspect-ratio: 1/2; grid-row: span 2; }
+
+.btn-secondary-dark {
+  background: transparent;
+  color: var(--brown);
+  border: 1.5px solid var(--brown);
+  border-radius: 50px;
+  padding: 13px 24px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-secondary-dark:hover { background: var(--gold-light); }
+
+/* ═══════════════════════════════════════════
+   8. TESTIMONI
+═══════════════════════════════════════════ */
+#testimoni { background: var(--gold-light); }
+.testi-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 480px;
+  margin: 0 auto;
+}
+.testi-card {
+  background: var(--white);
+  border-radius: 14px;
+  padding: 18px;
+  border: 1px solid rgba(232,165,176,0.2);
+}
+.testi-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.testi-avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.av1 { background:#F7D0DB; color:var(--rose-deep); }
+.av2 { background:#D4EAD0; color:#4A8A4A; }
+.av3 { background:#D0D8F0; color:#4A6A8A; }
+.av4 { background:#FAE0C8; color:#8A6A4A; }
+.testi-name { font-size: 14px; font-weight: 600; color: var(--brown); }
+.testi-loc  { font-size: 12px; color: var(--brown-mid); }
+.testi-stars { color: #F5A623; font-size: 13px; letter-spacing: 1px; margin-bottom: 8px; }
+.testi-text {
+  font-size: 14px;
+  color: var(--brown);
+  line-height: 1.7;
+  font-style: italic;
+}
+.testi-tag {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 11px;
+  background: var(--gold-light);
+  color: var(--brown-mid);
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+.wa-screenshot {
+  background: #E5DDD5;
+  border-radius: 14px;
+  overflow: hidden;
+  max-width: 480px;
+  margin: 0 auto 16px;
+}
+.wa-header {
+  background: #128C7E;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.wa-avatar {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--rose-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #fff;
+  font-weight: 600;
+}
+.wa-contact { color:#fff; font-size:13px; font-weight:600; }
+.wa-status  { color:rgba(255,255,255,0.65); font-size:11px; }
+.wa-body { padding:12px; display:flex; flex-direction:column; gap:8px; }
+.wa-bubble {
+  max-width: 85%;
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.bubble-in  { background:#fff; align-self:flex-start; border-top-left-radius:2px; color:#1a1a1a; }
+.bubble-out { background:#DCF8C6; align-self:flex-end; border-top-right-radius:2px; color:#1a1a1a; }
+.bubble-time { font-size:10px; color:rgba(0,0,0,0.4); text-align:right; margin-top:2px; }
+
+/* ═══════════════════════════════════════════
+   9. FAQ
+═══════════════════════════════════════════ */
+#faq { background: var(--ivory); }
+.faq-list {
+  max-width: 480px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.faq-item {
+  background: var(--white);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(232,165,176,0.18);
+}
+.faq-q {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 16px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  text-align: left;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--brown);
+  gap: 12px;
+}
+.faq-icon {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--gold-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--gold-dark);
+  transition: transform 0.25s ease, background 0.2s;
+}
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  font-size: 13.5px;
+  color: var(--brown-mid);
+  line-height: 1.7;
+}
+.faq-a.open { max-height: 200px; padding: 0 16px 16px; }
+.faq-icon.open { transform: rotate(45deg); }
+.faq-icon.open circle { fill: var(--gold); }
+.faq-icon.open line { stroke: var(--brown); }
+.faq-a .highlight { color: var(--gold-dark); font-weight: 700; }
+
+/* ═══════════════════════════════════════════
+   10. FINAL CTA
+═══════════════════════════════════════════ */
+#cta {
+  background: linear-gradient(160deg, var(--gold-light) 0%, var(--ivory) 100%);
+  padding: 72px 24px 100px;
+  text-align: center;
+}
+.cta-flower {
+  font-size: 56px;
+  margin-bottom: 20px;
+  display: block;
+  animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+#cta h2 { font-size: clamp(30px, 8vw, 40px); color: var(--brown); line-height: 1.15; margin-bottom: 12px; }
+#cta h2 em { color: var(--gold-dark); font-style: italic; }
+#cta p {
+  font-size: 15px;
+  color: var(--brown-mid);
+  line-height: 1.7;
+  margin-bottom: 28px;
+  max-width: 340px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.cta-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--green-wa);
+  color: #fff;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 18px 32px;
+  border-radius: 50px;
+  max-width: 400px;
+  margin: 0 auto 14px;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.3);
+}
+.cta-btn svg { width: 22px; height: 22px; }
+.cta-note { font-size: 12px; color: var(--brown-light); }
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer {
+  background: var(--brown);
+  padding: 32px 24px;
+  text-align: center;
+}
+.footer-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+footer p { font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.8; }
+
+/* ═══════════════════════════════════════════
+   NAVBAR
+═══════════════════════════════════════════ */
+.navbar { display: none; }
+
+/* ═══════════════════════════════════════════
+   TOAST NOTIFICATION
+═══════════════════════════════════════════ */
+#toast-container {
+  position: fixed;
+  bottom: 20px;
+  right: 16px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+  max-width: 340px;
+  width: calc(100vw - 32px);
+}
+.toast {
+  background: #fff;
+  border-left: 4px solid var(--gold);
+  border-radius: 10px;
+  padding: 14px 40px 14px 16px;
+  box-shadow: 0 6px 24px rgba(42,26,14,0.16);
+  animation: toastIn 0.38s cubic-bezier(0.34,1.56,0.64,1);
+  pointer-events: auto;
+  position: relative;
+}
+.toast-title {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--brown);
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+.toast-message {
+  font-size: 13px;
+  color: var(--brown-mid);
+  line-height: 1.5;
+}
+.toast-close {
+  position: absolute;
+  top: 8px; right: 10px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #bbb;
+  cursor: pointer;
+  line-height: 1;
+  padding: 2px 4px;
+}
+.toast-close:hover { color: var(--brown-mid); }
+@keyframes toastIn {
+  from { transform: translateX(120%); opacity: 0; }
+  to   { transform: translateX(0);    opacity: 1; }
+}
+.toast.removing {
+  animation: toastOut 0.28s ease forwards;
+}
+@keyframes toastOut {
+  from { transform: translateX(0);    opacity: 1; }
+  to   { transform: translateX(120%); opacity: 0; }
+}
+@media (max-width: 480px) {
+  #toast-container { right: 12px; width: calc(100vw - 24px); }
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE — TABLET ≥ 768px
+═══════════════════════════════════════════ */
+@media (min-width: 768px) {
+  .max-w { max-width: 720px; }
+  .proof-grid { max-width: 720px; gap: 12px; }
+  .proof-num  { font-size: 44px; }
+  .proof-item { padding: 28px 16px; }
+  .produk-grid { max-width: 720px; grid-template-columns: repeat(4,1fr); gap: 16px; }
+  .produk-card:first-child { grid-column: 1 / -1; grid-template-columns: 260px 1fr; }
+  .step-list { max-width: 720px; flex-direction: row; gap: 0; align-items: flex-start; }
+  .step { flex-direction: column; align-items: center; text-align: center; flex: 1; padding: 24px 16px; }
+  .step:not(:last-child)::after {
+    left: 50%; top: 22px; bottom: auto;
+    width: 100%; height: 2px;
+    background: linear-gradient(to right, var(--gold), transparent);
+  }
+  .step-body .note { display: block; margin: 8px auto 0; width: fit-content; }
+  .price-table { max-width: 720px; }
+  .price-note  { max-width: 720px; }
+  .promo-card  { max-width: 720px; }
+  .galeri-grid { max-width: 720px; grid-template-columns: repeat(4,1fr); gap: 8px; }
+  .wa-screenshot { max-width: 720px; }
+  .testi-list { max-width: 720px; flex-direction: row; align-items: flex-start; }
+  .testi-card { flex: 1; }
+  .faq-list { max-width: 720px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+}
+
+/* ═══════════════════════════════════════════
+   RESPONSIVE — DESKTOP ≥ 1024px
+═══════════════════════════════════════════ */
+@media (min-width: 1024px) {
+  /* Navbar */
+  .navbar {
     display: flex;
     align-items: center;
-    gap: 8px;
-    box-shadow: 0 4px 24px rgba(37,211,102,0.35);
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  .wa-sticky:active { transform: scale(0.96); }
-  .wa-sticky svg { width: 22px; height: 22px; flex-shrink: 0; }
-
-  /* ─── SECTION COMMON ─── */
-  section { padding: 64px 20px; }
-  .section-label {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--brown);
-    margin-bottom: 12px;
-    font-style: italic;
-  }
-  .section-label::before {
-    content: '';
-    display: inline-block;
-    width: 28px;
-    height: 3px;
-    background: var(--gold);
-    border-radius: 2px;
-    flex-shrink: 0;
-  }
-  .section-title {
-    font-size: clamp(30px, 8vw, 42px);
-    font-weight: 600;
-    line-height: 1.15;
-    color: var(--brown);
-    margin-bottom: 12px;
-  }
-  .section-sub {
-    font-size: 15px;
-    color: var(--brown-mid);
-    line-height: 1.7;
-    margin-bottom: 32px;
-  }
-  .center { text-align: center; }
-  .max-w { max-width: 480px; margin: 0 auto; }
-
-  /* ─── 1. HERO — Maison Bloom style ─── */
-  #hero {
-    padding: 0;
-    min-height: 100svh;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-  }
-
-  /* full-bleed background photo */
-  .hero-img-wrap {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-  }
-  .hero-img-wrap img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    object-position: center center;
-  }
-
-  /* warm light overlay — photo clearly visible */
-  .hero-img-wrap::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      180deg,
-      rgba(253,244,232,0.38) 0%,
-      rgba(253,244,232,0.18) 35%,
-      rgba(253,244,232,0.28) 65%,
-      rgba(253,244,232,0.55) 100%
-    );
-    pointer-events: none;
-  }
-
-  .hero-img-placeholder {
-    width: 100%; height: 100%;
-    background: linear-gradient(135deg, #E8D0A8 0%, #C4956A 100%);
-    display: flex; align-items: center; justify-content: center;
-  }
-  .hero-img-placeholder span { font-size: 100px; opacity: 0.25; }
-
-  /* badge top bar */
-  .hero-badge {
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    z-index: 11;
-    display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    pointer-events: none;
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    padding: 0 60px;
+    height: 68px;
+    background: rgba(253,244,232,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 2px solid var(--gold);
   }
-  .hero-badge-cat {
-    font-style: italic;
-    font-size: 11px;
-    color: var(--brown);
-    background: var(--gold);
-    padding: 7px 16px;
-    border-radius: 0 0 8px 0;
+  .nav-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
     font-weight: 700;
-    display: flex;
-    align-items: center;
-    gap: 6px;
+    color: var(--brown);
+    text-decoration: none;
     letter-spacing: 0.03em;
   }
-  .hero-badge-cat .dot-pulse { background: var(--brown); }
-  .hero-badge-brand {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 13px;
-    color: var(--brown);
-    background: rgba(253,244,232,0.72);
-    padding: 7px 14px;
-    border-radius: 0 0 0 8px;
-    letter-spacing: 0.02em;
-    backdrop-filter: blur(6px);
-  }
-
-  /* ── Eyebrow line — "Maison Bloom · Bali" style ── */
-  .hero-eyebrow {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--brown-mid);
-    margin-bottom: 20px;
-  }
-  .hero-eyebrow::before {
-    content: '';
-    display: block;
-    width: 36px;
-    height: 1.5px;
-    background: var(--gold);
-    flex-shrink: 0;
-  }
-
-  /* hero content — text anchored bottom-left over photo */
-  .hero-content {
-    position: relative;
-    z-index: 2;
-    margin-top: auto;
-    padding: 40px 28px 20px;
-    background: transparent;
-  }
-
-  .hero-tag { display: none; } /* replaced by eyebrow */
-
-  /* headline — large serif, dark */
-  #hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(40px, 12vw, 60px);
-    font-weight: 700;
-    line-height: 1.08;
-    color: var(--brown);
-    margin-bottom: 16px;
-    letter-spacing: -0.01em;
-  }
-  #hero h1 em {
-    color: var(--gold-dark);
-    font-style: italic;
-  }
-
-  /* sub text */
-  #hero .sub {
-    font-size: 14px;
-    line-height: 1.7;
-    color: var(--brown);
-    margin-bottom: 28px;
-    max-width: 420px;
-    opacity: 0.85;
-  }
-
-  /* CTA — full-width flat bars like Maison Bloom */
-  .hero-cta {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    margin: 0 -28px;            /* bleed to edges */
-  }
-  #hero .btn-primary {
-    background: var(--gold);
-    color: var(--brown);
-    font-weight: 800;
-    font-size: 12px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    border-radius: 0;
-    padding: 20px 28px;
-    box-shadow: none;
-    justify-content: center;
-    border-bottom: 1px solid rgba(107,66,40,0.08);
-  }
-  #hero .btn-secondary {
-    background: rgba(253,244,232,0.65);
-    color: var(--brown);
-    border: none;
-    border-top: 1px solid rgba(107,66,40,0.12);
-    border-radius: 0;
-    padding: 20px 28px;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    justify-content: center;
-    backdrop-filter: blur(8px);
-  }
-  #hero .btn-secondary svg { display: none; } /* hide arrow */
-
-  /* trust pills */
-  .hero-trust {
-    display: flex;
-    gap: 8px;
-    padding: 16px 28px;
-    background: rgba(253,244,232,0.5);
-    backdrop-filter: blur(8px);
-    flex-wrap: wrap;
-    border-top: 1px solid rgba(107,66,40,0.08);
-  }
-  .hero-trust-pill {
-    background: transparent;
-    border: none;
-    color: var(--brown-mid);
-    font-size: 11px;
-    font-weight: 600;
-    padding: 0;
-    border-radius: 0;
-  }
-  .hero-trust-pill:not(:last-child)::after {
-    content: ' ·';
-    color: var(--gold);
-    margin-left: 8px;
-  }
-
-  /* scroll indicator */
-  .hero-scroll {
-    text-align: center;
-    padding: 14px;
-    background: rgba(253,244,232,0.5);
-    backdrop-filter: blur(8px);
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--brown-mid);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    border-top: 1px solid rgba(107,66,40,0.08);
-  }
-  .hero-scroll::before {
-    content: '';
-    display: block;
-    width: 1px;
-    height: 20px;
-    background: var(--gold);
-    animation: scrollPulse 1.8s ease-in-out infinite;
-  }
-  @keyframes scrollPulse {
-    0%,100% { opacity: 1; transform: scaleY(1); }
-    50% { opacity: 0.4; transform: scaleY(0.6); }
-  }
-
-  /* ─── 2. SOCIAL PROOF ─── */  /* ─── 2. SOCIAL PROOF ─── */
-  #proof {
-    background: var(--brown);
-    padding: 40px 24px;
-  }
-  .proof-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 4px;
-    max-width: 480px;
-    margin: 0 auto;
-  }
-  .proof-item {
-    text-align: center;
-    padding: 20px 8px;
-    background: rgba(255,255,255,0.06);
-    border-radius: 12px;
-  }
-  .proof-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 34px;
-    font-weight: 600;
-    color: var(--gold);
-    line-height: 1;
-    margin-bottom: 6px;
-  }
-  .proof-label {
-    font-size: 11px;
-    color: rgba(255,255,255,0.6);
-    line-height: 1.4;
-  }
-  .proof-trust {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 24px;
-    flex-wrap: wrap;
-  }
-  .trust-badge {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 12px;
-    color: rgba(255,255,255,0.65);
-  }
-  .trust-badge svg { color: var(--rose); }
-
-  /* ─── 3. PRODUK ─── */
-  #produk {
-    background: var(--ivory);
-    position: relative;
-  }
-  #produk::before {
-    content: '';
-    display: block;
-    height: 4px;
-    background: linear-gradient(to right, var(--gold), transparent);
-    position: absolute;
-    top: 0; left: 0; right: 0;
-  }
-  .produk-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    max-width: 480px;
-    margin: 0 auto;
-  }
-  .produk-card {
-    background: var(--ivory);
-    border-radius: 16px;
-    overflow: hidden;
-    border: 1px solid rgba(232,165,176,0.25);
-    position: relative;
-  }
-  .produk-card:first-child {
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-  .produk-img {
-    width: 100%;
-    aspect-ratio: 4/5;
-    object-fit: cover;
-  }
-  .produk-img-placeholder {
-    width: 100%;
-    aspect-ratio: 4/5;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 40px;
-  }
-  .p1 { background: linear-gradient(135deg, #F7D0DB, #E8A5B0); }
-  .p2 { background: linear-gradient(135deg, #FAE0C8, #E8C0A0); }
-  .p3 { background: linear-gradient(135deg, #D4EAD0, #A8D0A0); }
-  .p4 { background: linear-gradient(135deg, #D0D8F0, #A8B8E8); }
-  .produk-info { padding: 12px; }
-  .produk-badge {
-    display: inline-block;
-    font-size: 10px;
-    font-weight: 600;
-    padding: 3px 8px;
-    border-radius: 4px;
-    margin-bottom: 6px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-  .badge-hot { background: #FFE4E9; color: #C9788A; }
-  .badge-new { background: #E4F5E4; color: #4A8A4A; }
-  .badge-value { background: #FFF3E0; color: var(--gold); }
-  .badge-promo { background: #E4ECF5; color: #4A6A8A; }
-  .produk-name {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--brown);
-    margin-bottom: 4px;
-    line-height: 1.3;
-  }
-  .produk-price {
-    font-family: 'Playfair Display', serif;
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--gold-dark);
-  }
-  .produk-price small {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 11px;
-    color: var(--brown-mid);
-    font-weight: 400;
-  }
-  .featured-img-wrap { position: relative; }
-  .featured-content { padding: 20px 16px; display: flex; flex-direction: column; justify-content: center; }
-  .featured-content .produk-name { font-size: 15px; }
-  .featured-content .produk-price { font-size: 26px; color: var(--gold); }
-  .featured-desc {
-    font-size: 12px;
-    color: var(--brown-mid);
-    line-height: 1.5;
-    margin: 6px 0 14px;
-  }
-  .btn-wa-small {
-    background: var(--gold);
-    color: var(--brown);
-    border: none;
-    border-radius: 50px;
-    padding: 10px 16px;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 13px;
-    font-weight: 600;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    cursor: pointer;
-  }
-
-  /* ─── 4. CARA ORDER ─── */
-  #cara { background: var(--gold-light); }
-  .step-list { display: flex; flex-direction: column; gap: 0; max-width: 480px; margin: 0 auto; }
-  .step {
-    display: flex;
-    gap: 20px;
-    padding: 20px 0;
-    position: relative;
-  }
-  .step:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    left: 21px;
-    top: 56px;
-    bottom: 0;
-    width: 2px;
-    background: linear-gradient(to bottom, var(--gold), transparent);
-  }
-  .step-num {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: var(--gold);
-    color: var(--brown);
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    font-weight: 600;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    position: relative;
-    z-index: 1;
-  }
-  .step-body h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px;
-    font-weight: 600;
-    color: var(--brown);
-    margin-bottom: 4px;
-  }
-  .step-body p {
-    font-size: 14px;
-    color: var(--brown-mid);
-    line-height: 1.6;
-  }
-  .step-body .note {
-    display: inline-block;
-    margin-top: 8px;
-    background: var(--gold);
-    color: var(--brown);
-    font-size: 11px;
-    font-weight: 600;
-    padding: 4px 10px;
-    border-radius: 4px;
-  }
-
-  /* ─── 5. PRICE LIST ─── */
-  #harga { background: var(--white); }
-  .price-table {
-    width: 100%;
-    max-width: 480px;
-    margin: 0 auto;
-    border-collapse: collapse;
-    border-radius: 16px;
-    overflow: hidden;
-    border: 1px solid rgba(232,165,176,0.3);
-  }
-  .price-table thead tr { background: var(--brown); }
-  .price-table thead th {
-    color: rgba(255,255,255,0.8);
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 14px 16px;
-    text-align: left;
-  }
-  .price-table thead th:last-child { text-align: right; }
-  .price-table tbody tr { border-bottom: 1px solid rgba(232,165,176,0.25); }
-  .price-table tbody tr:last-child { border-bottom: none; }
-  .price-table tbody tr:nth-child(even) { background: var(--blush); }
-  .price-table tbody td {
-    padding: 14px 16px;
-    font-size: 13px;
-    color: var(--brown);
-    vertical-align: middle;
-  }
-  .price-table tbody td:last-child {
-    text-align: right;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--rose-deep);
-  }
-  .price-note {
-    font-size: 13px;
-    color: var(--brown-mid);
-    text-align: center;
-    margin-top: 16px;
-    padding: 14px 20px;
-    background: var(--gold-light);
-    border: 1.5px solid var(--gold);
-    border-radius: 12px;
-    max-width: 480px;
-    margin: 20px auto 0;
-    line-height: 1.6;
-  }
-  .price-note strong { color: var(--gold); }
-
-  /* ─── 6. PROMO ─── */
-  #promo {
-    background: linear-gradient(135deg, var(--brown) 0%, #3A1A08 100%);
-    padding: 56px 24px;
-  }
-  .promo-card {
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(232,165,176,0.3);
-    border-radius: 20px;
-    padding: 28px 24px;
-    max-width: 480px;
-    margin: 0 auto;
-  }
-  .promo-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: var(--gold);
-    color: var(--brown);
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 5px 12px;
-    border-radius: 4px;
-    margin-bottom: 16px;
-  }
-  .promo-card h2 {
-    font-size: 32px;
-    color: #fff;
-    line-height: 1.15;
-    margin-bottom: 12px;
-  }
-  .promo-card h2 em { color: var(--gold-light); font-style: italic; }
-  .promo-card p {
-    font-size: 14px;
-    color: rgba(255,255,255,0.65);
-    line-height: 1.65;
-    margin-bottom: 24px;
-  }
-  .promo-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin-bottom: 28px;
-  }
-  .promo-list li {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 14px;
-    color: rgba(255,255,255,0.8);
-  }
-  .promo-list li .check {
-    width: 22px; height: 22px;
-    border-radius: 50%;
-    background: var(--gold);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    font-size: 12px;
-    color: var(--brown);
-  }
-  .countdown-wrap {
-    background: rgba(0,0,0,0.25);
-    border-radius: 12px;
-    padding: 16px;
-    margin-bottom: 24px;
-  }
-  .countdown-label {
-    font-size: 11px;
-    color: rgba(255,255,255,0.5);
-    text-align: center;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-  }
-  .countdown {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-  }
-  .cd-item {
-    text-align: center;
-    background: rgba(255,255,255,0.1);
-    border-radius: 8px;
-    padding: 10px 14px;
-    min-width: 52px;
-  }
-  .cd-num {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 28px;
-    font-weight: 600;
-    color: #fff;
-    line-height: 1;
-    display: block;
-  }
-  .cd-unit {
-    font-size: 10px;
-    color: rgba(255,255,255,0.45);
-    display: block;
-    margin-top: 3px;
-  }
-  .cd-sep {
-    font-size: 24px;
-    color: rgba(255,255,255,0.3);
-    align-self: center;
-    padding-bottom: 4px;
-  }
-
-  /* ─── 7. GALERI ─── */
-  #galeri { background: var(--ivory); }
-  .galeri-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 6px;
-    max-width: 480px;
-    margin: 0 auto;
-  }
-  .galeri-item {
-    aspect-ratio: 1;
-    border-radius: 10px;
-    overflow: hidden;
-    position: relative;
-    background: var(--blush);
-  }
-  .galeri-item img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.3s;
-  }
-  .galeri-item:active img { transform: scale(1.05); }
-  .galeri-item-ph {
-    width: 100%; height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 28px;
-  }
-  .g1 { background: linear-gradient(135deg, #F7D0DB, #E8A5B0); }
-  .g2 { background: linear-gradient(135deg, #FAE0C8, #EDBB8A); }
-  .g3 { background: linear-gradient(135deg, #D4EAD0, #9FCA9A); }
-  .g4 { background: linear-gradient(135deg, #D8D0F0, #B0A0E0); }
-  .g5 { background: linear-gradient(135deg, #F0DDD0, #D8A888); }
-  .g6 { background: linear-gradient(135deg, #D0ECF0, #88C8D8); }
-  .g7 { background: linear-gradient(135deg, #F5E0D0, #E0A888); }
-  .g8 { background: linear-gradient(135deg, #E8D0EC, #C888D8); }
-  .g9 { background: linear-gradient(135deg, #E0ECD0, #A0CC88); }
-  .galeri-item.tall { aspect-ratio: 1 / 2; grid-row: span 2; }
-
-  /* ─── 8. TESTIMONI ─── */
-  #testimoni { background: var(--gold-light); }
-  .testi-list {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    max-width: 480px;
-    margin: 0 auto;
-  }
-  .testi-card {
-    background: var(--white);
-    border-radius: 16px;
-    padding: 18px;
-    border: 1px solid rgba(232,165,176,0.25);
-  }
-  .testi-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 12px;
-  }
-  .testi-avatar {
-    width: 40px; height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 18px;
-    font-weight: 600;
-    flex-shrink: 0;
-  }
-  .av1 { background: #F7D0DB; color: var(--rose-deep); }
-  .av2 { background: #D4EAD0; color: #4A8A4A; }
-  .av3 { background: #D0D8F0; color: #4A6A8A; }
-  .av4 { background: #FAE0C8; color: #8A6A4A; }
-  .testi-name { font-size: 14px; font-weight: 600; color: var(--brown); }
-  .testi-loc { font-size: 12px; color: var(--brown-mid); }
-  .testi-stars { color: #F5A623; font-size: 13px; letter-spacing: 1px; margin-bottom: 8px; }
-  .testi-text {
-    font-size: 14px;
-    color: var(--brown);
-    line-height: 1.7;
-    font-style: italic;
-  }
-  .testi-tag {
-    display: inline-block;
-    margin-top: 10px;
-    font-size: 11px;
-    background: var(--gold-light);
-    color: var(--brown-mid);
-    padding: 3px 10px;
-    border-radius: 4px;
-    font-weight: 600;
-  }
-  .wa-screenshot {
-    background: #E5DDD5;
-    border-radius: 16px;
-    overflow: hidden;
-    max-width: 480px;
-    margin: 0 auto 16px;
-  }
-  .wa-header {
-    background: #128C7E;
-    padding: 10px 14px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .wa-avatar {
-    width: 32px; height: 32px;
-    border-radius: 50%;
-    background: var(--rose-deep);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    color: #fff;
-    font-weight: 600;
-  }
-  .wa-contact { color: #fff; font-size: 13px; font-weight: 600; }
-  .wa-status { color: rgba(255,255,255,0.65); font-size: 11px; }
-  .wa-body { padding: 12px; display: flex; flex-direction: column; gap: 8px; }
-  .wa-bubble {
-    max-width: 85%;
-    border-radius: 10px;
-    padding: 8px 12px;
-    font-size: 13px;
-    line-height: 1.5;
-    position: relative;
-  }
-  .bubble-in {
-    background: #fff;
-    align-self: flex-start;
-    border-top-left-radius: 2px;
-    color: #1a1a1a;
-  }
-  .bubble-out {
-    background: #DCF8C6;
-    align-self: flex-end;
-    border-top-right-radius: 2px;
-    color: #1a1a1a;
-  }
-  .bubble-time {
-    font-size: 10px;
-    color: rgba(0,0,0,0.4);
-    text-align: right;
-    margin-top: 2px;
-  }
-
-  /* ─── 9. FAQ ─── */
-  #faq { background: var(--ivory); }
-  .faq-list {
-    max-width: 480px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-  .faq-item {
-    background: var(--white);
-    border-radius: 12px;
-    overflow: hidden;
-    border: 1px solid rgba(232,165,176,0.2);
-  }
-  .faq-q {
-    width: 100%;
-    background: none;
-    border: none;
-    padding: 18px 16px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    text-align: left;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--brown);
-    gap: 12px;
-  }
-  .faq-icon {
-    width: 24px; height: 24px;
-    border-radius: 50%;
-    background: var(--gold-light);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    font-size: 16px;
-    color: var(--gold-dark);
-    transition: transform 0.2s, background 0.2s;
-    font-weight: 400;
-    line-height: 1;
-  }
-  .faq-a {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease, padding 0.3s ease;
+  .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+  .nav-links a {
     font-size: 13.5px;
+    font-weight: 500;
     color: var(--brown-mid);
-    line-height: 1.7;
+    text-decoration: none;
+    transition: color 0.2s;
   }
-  .faq-a.open {
-    max-height: 200px;
-    padding: 0 16px 16px;
-  }
-  .faq-icon.open {
-    transform: rotate(45deg);
+  .nav-links a:hover { color: var(--gold-dark); }
+  .nav-wa {
     background: var(--gold);
-    color: var(--brown);
-  }
-  .faq-a .highlight { color: var(--gold-dark); font-weight: 700; }
-
-  /* ─── 10. FINAL CTA ─── */
-  #cta {
-    background: linear-gradient(160deg, var(--gold-light) 0%, var(--ivory) 100%);
-    padding: 72px 24px 100px;
-    text-align: center;
-  }
-  .cta-flower {
-    font-size: 56px;
-    margin-bottom: 20px;
-    display: block;
-    animation: float 3s ease-in-out infinite;
-  }
-  @keyframes float {
-    0%,100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-  }
-  #cta h2 {
-    font-size: clamp(32px, 9vw, 44px);
-    color: var(--brown);
-    line-height: 1.15;
-    margin-bottom: 14px;
-  }
-  #cta h2 em { color: var(--rose-deep); }
-  #cta p {
-    font-size: 15px;
-    color: var(--brown-mid);
-    line-height: 1.7;
-    margin-bottom: 32px;
-    max-width: 340px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .cta-btn {
+    color: var(--brown) !important;
+    padding: 10px 20px;
+    border-radius: 50px;
+    font-weight: 700 !important;
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 10px;
-    background: var(--green-wa);
-    color: #fff;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 17px;
-    font-weight: 700;
+    gap: 7px;
+    font-size: 13.5px;
     text-decoration: none;
-    padding: 19px 32px;
-    border-radius: 50px;
-    max-width: 400px;
-    margin: 0 auto 16px;
   }
-  .cta-btn svg { width: 24px; height: 24px; }
-  .cta-note {
-    font-size: 12px;
-    color: var(--brown-mid);
-    opacity: 0.7;
-  }
+  .nav-wa svg { width: 16px; height: 16px; }
+  body { padding-top: 68px; }
 
-  /* ─── ADDITIONAL BUTTON VARIANTS ─── */
-  /* secondary on light background */
-  .btn-secondary-dark {
-    background: transparent;
-    color: var(--brown);
-    border: 1.5px solid var(--brown);
-    border-radius: 50px;
-    padding: 14px 24px;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    cursor: pointer;
-    transition: background 0.2s;
-  }
-  .btn-secondary-dark:hover, .btn-secondary-dark:active {
-    background: var(--gold-light);
-  }
-  /* CTA section */
-  #cta h2 em { color: var(--gold-dark); }
+  /* Common */
+  .max-w { max-width: 1100px; }
+  section { padding: 96px 60px; }
 
-  /* ─── FOOTER ─── */
-  footer {
-    background: var(--brown);
-    padding: 32px 24px;
-    text-align: center;
-  }
-  .footer-brand {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 28px;
-    font-weight: 600;
-    color: var(--gold-light);
-    letter-spacing: 0.05em;
-    margin-bottom: 6px;
-  }
-  footer p {
-    font-size: 12px;
-    color: rgba(255,255,255,0.4);
-    line-height: 1.8;
-  }
+  /* Hero desktop */
+  #hero { min-height: 100vh; }
+  .hero-content { max-width: 680px; padding: 60px 80px 28px; }
+  #hero h1 { font-size: clamp(52px, 5.5vw, 78px); }
+  #hero .sub { font-size: 16px; max-width: 520px; }
+  .hero-eyebrow { font-size: 12px; }
+  .hero-cta { flex-direction: row; margin: 24px 0 0 0; max-width: 520px; }
+  #hero .btn-primary  { flex: 1.4; padding: 20px 40px; font-size: 12px; }
+  #hero .btn-secondary{ flex: 1; padding: 20px 40px; font-size: 12px; }
+  .hero-trust { padding: 0 80px; }
+  .hero-trust-pill { padding: 14px 8px; }
+  .hero-scroll { padding: 14px 80px; }
 
-  /* ════════════════════════════════════════
-     NAVBAR
-  ════════════════════════════════════════ */
-  .navbar {
-    display: none; /* hidden on mobile */
-  }
+  /* Proof */
+  #proof { padding: 56px 60px; }
+  .proof-grid { max-width: 1100px; gap: 16px; }
+  .proof-num  { font-size: 52px; }
+  .proof-trust { gap: 40px; margin-top: 32px; }
+  .trust-badge { font-size: 14px; }
 
-  /* ════════════════════════════════════════
-     TABLET  ≥ 768px
-  ════════════════════════════════════════ */
-  @media (min-width: 768px) {
-    .max-w { max-width: 720px; }
+  /* Produk */
+  .produk-grid { max-width: 1100px; grid-template-columns: repeat(4,1fr); gap: 20px; }
+  .produk-card:first-child { grid-column: 1/-1; grid-template-columns: 380px 1fr; }
+  .featured-content { padding: 36px 36px; }
+  .featured-content .produk-name { font-size: 22px; }
+  .featured-content .produk-price { font-size: 32px; }
+  .featured-desc { font-size: 14px; margin: 10px 0 18px; }
 
-    /* proof */
-    .proof-grid { max-width: 720px; gap: 12px; }
-    .proof-num  { font-size: 44px; }
-    .proof-item { padding: 28px 16px; }
+  /* Steps */
+  #cara { padding: 96px 60px; }
+  .step-list { max-width: 1100px; flex-direction: row; }
+  .step { padding: 32px 24px; }
+  .step-num { width: 56px; height: 56px; font-size: 28px; }
+  .step-body h3 { font-size: 26px; }
+  .step-body p  { font-size: 15px; }
 
-    /* produk */
-    .produk-grid { max-width: 720px; grid-template-columns: repeat(4,1fr); gap: 16px; }
-    .produk-card:first-child { grid-column: 1 / -1; grid-template-columns: 260px 1fr; }
+  /* Price */
+  .price-table { max-width: 900px; }
+  .price-note  { max-width: 900px; font-size: 15px; }
+  .price-table tbody td { font-size: 15px; padding: 18px 18px; }
+  .price-table thead th { font-size: 12px; padding: 16px 18px; }
+  .price-table tbody td:last-child { font-size: 22px; }
 
-    /* cara order */
-    .step-list { max-width: 720px; flex-direction: row; gap: 0; align-items: flex-start; }
-    .step { flex-direction: column; align-items: center; text-align: center; flex: 1; padding: 24px 16px; }
-    .step:not(:last-child)::after {
-      left: 50%; top: 22px; bottom: auto;
-      width: 100%; height: 2px;
-      background: linear-gradient(to right, var(--gold), transparent);
-    }
-    .step-body .note { display: block; margin: 8px auto 0; width: fit-content; }
+  /* Promo */
+  #promo { padding: 96px 60px; }
+  .promo-card { max-width: 1100px; display: grid; grid-template-columns: 1fr 380px; gap: 56px; align-items: start; padding: 52px 52px; }
+  .promo-card h2 { font-size: 42px; }
 
-    /* price */
-    .price-table { max-width: 720px; }
-    .price-note  { max-width: 720px; }
+  /* Galeri */
+  .galeri-grid { max-width: 1100px; grid-template-columns: repeat(4,1fr); gap: 12px; }
 
-    /* promo */
-    .promo-card { max-width: 720px; }
+  /* Testimoni */
+  #testimoni { padding: 96px 60px; }
+  .wa-screenshot { max-width: 700px; margin-bottom: 32px; }
+  .testi-list { max-width: 1100px; flex-direction: row; gap: 20px; }
 
-    /* galeri */
-    .galeri-grid { max-width: 720px; grid-template-columns: repeat(4,1fr); gap: 8px; }
+  /* FAQ */
+  #faq { padding: 96px 60px; }
+  .faq-list { max-width: 1100px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; align-items: start; }
+  .faq-q { font-size: 15px; }
 
-    /* testimoni */
-    .wa-screenshot { max-width: 720px; }
-    .testi-list { max-width: 720px; flex-direction: row; align-items: flex-start; }
-    .testi-card { flex: 1; }
+  /* CTA */
+  #cta { padding: 120px 60px 140px; }
+  .cta-btn { font-size: 18px; padding: 20px 48px; max-width: 460px; }
 
-    /* faq */
-    .faq-list { max-width: 720px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-  }
+  /* Footer */
+  footer { padding: 48px 60px; }
+  .footer-brand { font-size: 32px; }
+  footer p { font-size: 13px; }
 
-  /* ════════════════════════════════════════
-     DESKTOP  ≥ 1024px
-  ════════════════════════════════════════ */
-  @media (min-width: 1024px) {
-
-    /* ── Navbar ── */
-    .navbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 1000;
-      padding: 0 60px;
-      height: 68px;
-      background: rgba(253,244,232,0.96);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(232,165,176,0.25);
-    }
-    .nav-brand {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 26px;
-      font-weight: 600;
-      color: var(--brown);
-      text-decoration: none;
-      letter-spacing: 0.03em;
-    }
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 32px;
-      list-style: none;
-    }
-    .nav-links a {
-      font-size: 13.5px;
-      font-weight: 500;
-      color: var(--brown-mid);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--gold-dark); }
-    .nav-wa {
-      background: var(--gold);
-      color: var(--brown) !important;
-      padding: 10px 20px;
-      border-radius: 50px;
-      font-weight: 600 !important;
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      font-size: 13.5px;
-      text-decoration: none;
-    }
-    .nav-wa svg { width: 16px; height: 16px; }
-
-    /* push body down so navbar doesn't overlap hero */
-    body { padding-top: 68px; }
-
-    /* ── Common ── */
-    .max-w { max-width: 1100px; }
-    section { padding: 96px 60px; }
-
-    /* ── Hero desktop — full bleed, text over photo ── */
-    #hero { min-height: 100vh; }
-    .hero-content {
-      max-width: 700px;
-      padding: 60px 80px 32px;
-    }
-    #hero h1 { font-size: clamp(52px, 5.5vw, 80px); }
-    #hero .sub { font-size: 16px; max-width: 540px; }
-    .hero-eyebrow { font-size: 12px; }
-
-    /* CTA bars on desktop — side by side */
-    .hero-cta {
-      flex-direction: row;
-      margin: 0;
-    }
-    #hero .btn-primary {
-      flex: 1;
-      padding: 22px 40px;
-      font-size: 12px;
-    }
-    #hero .btn-secondary {
-      flex: 1;
-      padding: 22px 40px;
-      font-size: 12px;
-    }
-    .hero-trust {
-      padding: 14px 80px;
-      gap: 24px;
-    }
-    .hero-scroll { padding: 16px 80px; }
-
-    /* ── Social Proof ── */
-    #proof { padding: 56px 60px; }
-    .proof-grid { max-width: 1100px; gap: 16px; }
-    .proof-num  { font-size: 52px; }
-    .proof-trust { gap: 40px; margin-top: 32px; }
-    .trust-badge { font-size: 14px; }
-    .trust-badge svg { width: 20px; height: 20px; }
-
-    /* ── Produk ── */
-    .produk-grid {
-      max-width: 1100px;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-    }
-    .produk-card:first-child {
-      grid-column: 1 / -1;
-      grid-template-columns: 380px 1fr;
-    }
-    .featured-content { padding: 40px 40px; }
-    .featured-content .produk-name { font-size: 22px; }
-    .featured-content .produk-price { font-size: 36px; }
-    .featured-desc { font-size: 14px; margin: 10px 0 20px; }
-
-    /* ── Cara Order ── */
-    #cara { padding: 96px 60px; }
-    .step-list {
-      max-width: 1100px;
-      flex-direction: row;
-      gap: 0;
-    }
-    .step { padding: 32px 24px; }
-    .step-num { width: 56px; height: 56px; font-size: 28px; }
-    .step-body h3 { font-size: 28px; }
-    .step-body p  { font-size: 15px; }
-
-    /* ── Price List ── */
-    .price-table { max-width: 900px; }
-    .price-note  { max-width: 900px; font-size: 15px; }
-    .price-table tbody td { font-size: 15px; padding: 18px 20px; }
-    .price-table thead th { font-size: 12px; padding: 16px 20px; }
-    .price-table tbody td:last-child { font-size: 24px; }
-
-    /* ── Promo ── */
-    #promo { padding: 96px 60px; }
-    .promo-card {
-      max-width: 1100px;
-      display: grid;
-      grid-template-columns: 1fr 420px;
-      gap: 60px;
-      align-items: start;
-      padding: 52px 56px;
-    }
-    .promo-card h2 { font-size: 44px; }
-    .promo-card > *:nth-child(n+5) { grid-column: 2; }
-    .promo-card > *:nth-child(-n+4) { grid-column: 1; }
-    .promo-card > .countdown-wrap { grid-column: 2; grid-row: 1; }
-    .promo-layout-left  { grid-column: 1; }
-    .promo-layout-right { grid-column: 2; }
-
-    /* ── Galeri ── */
-    .galeri-grid {
-      max-width: 1100px;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-    }
-
-    /* ── Testimoni ── */
-    #testimoni { padding: 96px 60px; }
-    .wa-screenshot { max-width: 700px; margin-bottom: 32px; }
-    .testi-list {
-      max-width: 1100px;
-      flex-direction: row;
-      gap: 20px;
-    }
-
-    /* ── FAQ ── */
-    #faq { padding: 96px 60px; }
-    .faq-list {
-      max-width: 1100px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-      align-items: start;
-    }
-    .faq-q { font-size: 15px; }
-
-    /* ── CTA ── */
-    #cta { padding: 120px 60px 140px; }
-    .cta-btn { font-size: 19px; padding: 22px 48px; max-width: 480px; }
-
-    /* ── Footer ── */
-    footer { padding: 48px 60px; }
-    .footer-brand { font-size: 34px; }
-    footer p { font-size: 14px; }
-
-    /* ── Hover effects on desktop ── */
-    .btn-primary:hover  { background: #1da851; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,211,102,0.35); }
-    .btn-secondary:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.7); }
-    .galeri-item:hover img { transform: scale(1.07); }
-    .produk-card { transition: transform 0.2s, box-shadow 0.2s; }
-    .produk-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(45,27,30,0.1); }
-    .testi-card { transition: transform 0.2s; }
-    .testi-card:hover { transform: translateY(-3px); }
-    .wa-sticky:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(37,211,102,0.4); }
-  }
-
-
-  /* ════════════════════════════════════════
-     TOAST NOTIFICATION — Pop-up Pembeli
-  ════════════════════════════════════════ */
-  .toast-container {
-    position: fixed;
-    bottom: 24px;
-    right: 20px;
-    z-index: 9999;
-    pointer-events: none;
-  }
-  .toast {
-    background: #fff;
-    border-left: 4px solid var(--gold);
-    border-radius: 10px;
-    padding: 16px 20px;
-    margin-bottom: 12px;
-    box-shadow: 0 8px 28px rgba(45,27,30,0.18);
-    animation: slideIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-    pointer-events: auto;
-    max-width: 320px;
-  }
-  .toast-title {
-    font-weight: 700;
-    font-size: 15px;
-    color: var(--brown);
-    margin-bottom: 6px;
-    line-height: 1.3;
-  }
-  .toast-message {
-    font-size: 13px;
-    color: var(--brown-mid);
-    line-height: 1.6;
-  }
-  @keyframes slideIn {
-    from {
-      transform: translateX(360px);
-      opacity: 0;
-    }
-    to {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
-  @keyframes slideOut {
-    to {
-      transform: translateX(360px);
-      opacity: 0;
-    }
-  }
-  .toast.removing {
-    animation: slideOut 0.3s ease forwards;
-  }
-
-  /* Mobile responsive */
-  @media (max-width: 480px) {
-    .toast-container {
-      bottom: 16px;
-      right: 12px;
-      left: 12px;
-    }
-    .toast {
-      max-width: 100%;
-    }
-  }
-
-
-  /* ════════════════════════════════════════
-     TOAST NOTIFICATIONS
-  ════════════════════════════════════════ */
-  .toast {
-    background: #fff;
-    border-left: 4px solid var(--gold);
-    border-radius: 10px;
-    padding: 16px 20px;
-    box-shadow: 0 8px 28px rgba(0,0,0,0.16);
-    min-width: 320px;
-    max-width: 380px;
-    animation: slideInRight 0.4s cubic-bezier(0.23, 1, 0.320, 1);
-    pointer-events: auto;
-    cursor: pointer;
-  }
-  .toast:hover {
-    box-shadow: 0 12px 32px rgba(0,0,0,0.2);
-  }
-  .toast-title {
-    font-weight: 700;
-    font-size: 14px;
-    color: var(--brown);
-    margin-bottom: 4px;
-    line-height: 1.3;
-  }
-  .toast-message {
-    font-size: 13px;
-    color: var(--brown-mid);
-    line-height: 1.5;
-  }
-  .toast-close {
-    position: absolute;
-    top: 8px;
-    right: 12px;
-    background: none;
-    border: none;
-    font-size: 18px;
-    color: #ccc;
-    cursor: pointer;
-    padding: 0;
-    width: 24px;
-    height: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .toast-close:hover {
-    color: var(--brown-mid);
-  }
-  @keyframes slideInRight {
-    from {
-      transform: translateX(420px);
-      opacity: 0;
-    }
-    to {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
-  @keyframes slideOutRight {
-    from {
-      transform: translateX(0);
-      opacity: 1;
-    }
-    to {
-      transform: translateX(420px);
-      opacity: 0;
-    }
-  }
-  .toast.remove {
-    animation: slideOutRight 0.3s ease forwards;
-  }
-  
-  /* Mobile responsive */
-  @media (max-width: 480px) {
-    .toast {
-      min-width: 280px;
-      max-width: 100%;
-      margin: 0 12px;
-    }
-    #toast-container {
-      bottom: 16px;
-      right: 12px;
-      left: 12px;
-      width: auto;
-    }
-  }
+  /* Hover */
+  .btn-primary:hover { background: #1da851; transform: translateY(-2px); }
+  .galeri-item:hover img { transform: scale(1.07); }
+  .produk-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(42,26,14,0.1); }
+  .testi-card { transition: transform 0.2s; }
+  .testi-card:hover { transform: translateY(-3px); }
+  .wa-sticky:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(37,211,102,0.4); }
+}
 
 </style>
 </head>
 <body>
 
-<!-- ─── TOAST NOTIFICATION CONTAINER ─── -->
-<div id="toast-container" style="position:fixed;bottom:20px;right:20px;z-index:9999;display:flex;flex-direction:column;gap:12px;pointer-events:none;"></div>
-<!-- Toast Notification Container -->
-<div class="toast-container" id="toastContainer"></div>
+<!-- Toast Notification Container (single, clean) -->
+<div id="toast-container"></div>
 
 
 
@@ -1485,7 +1470,7 @@
       🎓 Spesial Musim Wisuda
     </div>
     <!-- [EDIT 2] Judul utama hero — bisa ubah sesuai selera -->
-    <h1>Setiap Hadiah <br>Memiliki Kisahnya<br>Buat Dia Tersenyum<em>Ketika Mengingatnya</em> 🎓</h1>
+    <h1><span class="highlight-gold">Senyum</span> Terbaik Hadir<br>dari Hadiah yang<br><em>Berkesan</em></h1>
     <!-- [EDIT 3] Sub judul hero -->
     <p class="sub">Buket cantik mulai <strong>Rp10.000</strong> — pesan mudah via WhatsApp, siap dalam 24 jam. Dipercaya 1000+ pelanggan di Pekalongan sejak 2021.</p>
     <div class="hero-cta">
@@ -1555,7 +1540,12 @@
       <div class="featured-content">
         <span class="produk-badge badge-hot">⭐PROMO ⭐</span>
         <div class="produk-name">Buket Wisuda Premium</div>
-        <div class="produk-price"><s>Rp 55.000</s> <strong>Rp 45.000</strong><small>Klaim Promo (chat Sekarang)</small></div>
+        <div class="produk-price">
+          <div class="price-promo-wrap">
+            <span class="price-original">Rp 55.000 <span class="price-badge-save">HEMAT 18%</span></span>
+            <span class="price-now">Rp 45.000 <small>/ promo hari ini</small></span>
+          </div>
+        </div>
         <p class="featured-desc">Buket Wisuda Premium Dengan Tambahan Bunga Cantik nan Manis untuk Momen Wisuda</p>
         <a href="https://wa.me/6281229658701?text=Saya%20mau%20pesan%20buket%20wisuda%20premium%20dengan%20kode%20wisuda55" class="btn-wa-small" target="_blank" rel="noopener">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
@@ -1656,10 +1646,20 @@
         <td>Boneka Bertoga + wrapping</td>
         <td>Rp 35rb</td>
       </tr>
-      <tr>
-        <td><strong>Wisuda Premium ⭐</strong><br><span style="font-size:11px;color:#7A4E5A">Best value</span></td>
+      <tr class="row-premium">
+        <td>
+          <span class="badge-popular">⭐ Paling Laku</span><br>
+          <strong style="font-size:15px; color:var(--brown);">Wisuda Premium</strong><br>
+          <span style="font-size:11px;color:var(--gold-dark);font-weight:600;">Best value · Promo terbatas</span>
+        </td>
         <td>Boneka Bertoga + wrapping + Bunga Artificial</td>
-        <td><s>Rp 55rb</s>Rp 45rb</td>
+        <td>
+          <div class="td-price-promo">
+            <span class="td-save-badge">HEMAT 18%</span>
+            <span class="td-original">Rp 55rb</span>
+            <span class="td-now">Rp 45rb</span>
+          </div>
+        </td>
       </tr>
       <tr style="background: #FFF0F4;">
         <td><strong>Wisuda Snack</strong><br><span style="font-size:11px;color:#C9788A">Terlaris!</span></td>
@@ -1689,7 +1689,7 @@
   <div class="promo-card">
     <div class="promo-tag">🎓 Promo Wisuda Juni 2026</div>
     <h2>Buket Wisuda<br><em>Premium⭐</em></h2>
-    <p>Pesan via landing page dapat harga spesial <s>Rp 55.000</s> Rp 45.000 dengan Klik Klaim Promo. Diskon Promo Terbatas hanya 10 pembeli per hari!</p>
+    <p>Pesan via landing page dapat harga spesial <span style="text-decoration:line-through;color:#b0907a;font-size:0.9em;">Rp 55.000</span> <span style="color:var(--gold);font-family:'Playfair Display',serif;font-weight:700;font-size:1.1em;">Rp 45.000</span> <span style="display:inline-block;background:#FF4D4D;color:#fff;font-size:10px;font-weight:700;padding:2px 7px;border-radius:4px;vertical-align:middle;">HEMAT Rp 10rb</span> dengan Klik Klaim Promo. Diskon Promo Terbatas hanya 10 pembeli per hari!</p>
     <ul class="promo-list">
       <li><span class="check">✓</span> Konsultasi design gratis via chat</li>
       <li><span class="check">✓</span> Foto preview sebelum dikirim via WA</li>
@@ -1697,20 +1697,18 @@
       <li><span class="check">✓</span> Same-day order tersedia</li>
     </ul>
     <!-- PROGRESS BAR SECTION -->
-    <div style="margin-bottom: 28px;">
-      <div style="font-size:12px;font-weight:700;color:rgba(255,255,255,0.7);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.1em;">
-        Pembeli Yang Sudah Dapat Diskon Hari Ini
+    <div class="progress-wrap">
+      <div class="progress-label">Pembeli Yang Sudah Dapat Diskon Hari Ini</div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-bar"></div>
       </div>
-      <div style="background:rgba(255,255,255,0.15);border-radius:12px;height:28px;overflow:hidden;margin-bottom:8px;">
-        <div id="progress-bar" style="height:100%;background:linear-gradient(90deg,var(--gold),#f5d547);width:20%;transition:width 0.4s ease;border-radius:12px;"></div>
-      </div>
-      <div style="display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,0.8);">
+      <div class="progress-meta">
         <span id="progress-text">2 dari 10 pembeli</span>
         <span id="progress-percent">20%</span>
       </div>
-      <div style="margin-top:12px;padding:12px;background:rgba(0,0,0,0.25);border-radius:8px;font-size:12px;color:rgba(255,255,255,0.8);border-left:3px solid var(--gold);">
-         <strong>Klaim Promo Diskon</strong> — Khusus Pembeli yang Klik Klaim Promo di bawah ini! <br>
-         Promo akan otomatis hangus jika kuota 10 pembeli sudah terpenuhi, jadi pastikan kamu klik tombol klaim sekarang juga untuk mengamankan harga spesial ini! <br>
+      <div class="progress-note">
+        <strong>Klaim Promo Diskon</strong> — Khusus Pembeli yang Klik Klaim Promo di bawah ini!<br>
+        Promo akan otomatis hangus jika kuota 10 pembeli sudah terpenuhi, jadi pastikan kamu klik tombol klaim sekarang juga untuk mengamankan harga spesial ini!
       </div>
     </div>
     <a href="https://wa.me/6281229658701?text=Halo!%20Saya%20mau%20klaim%20Promo%20Wisuda%20Juni%20Dropsmile%20%F0%9F%8C8" class="btn-primary" target="_blank" rel="noopener" style="border-radius:12px;">
@@ -1740,11 +1738,53 @@
     <div class="galeri-item" role="listitem"><img src="foto/galeri-8.jpg" alt="Buket Dropsmile 8" style="width:100%;height:100%;object-fit:cover" onerror="this.outerHTML='<div class=&quot;galeri-item-ph g8&quot;>💮</div>'"></div>
     <div class="galeri-item" role="listitem"><img src="foto/galeri-9.jpg" alt="Buket Dropsmile 9" style="width:100%;height:100%;object-fit:cover" onerror="this.outerHTML='<div class=&quot;galeri-item-ph g9&quot;>🏵️</div>'"></div>
   </div>
-  <div style="text-align:center; margin-top: 24px;">
-    <a href="https://wa.me/6281229658701?text=Halo!%20Saya%20mau%20lihat%20lebih%20banyak%20portfolio%20Dropsmile" class="btn-secondary-dark" target="_blank" rel="noopener">
+  <div style="text-align:center; margin-top: 28px;">
+    <button class="btn-secondary-dark" id="portfolioBtn" onclick="toggleSocialMedia()" style="display:inline-flex; align-items:center; gap:10px;">
       Lihat Portfolio Lengkap
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5l7 7-7 7M5 12h14"/></svg>
-    </a>
+      <svg id="portfolioArrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="transition:transform 0.3s ease;" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+    <!-- Social Media Icons — Clean circles, single color, wide spacing -->
+    <div id="socialMediaSection" style="display:none; margin-top:28px; opacity:0; transition:opacity 0.3s ease;">
+      <div style="display:flex; justify-content:center; align-items:flex-start; gap:64px; flex-wrap:nowrap; width:100%;">
+
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/dropsmile.gift/" target="_blank" rel="noopener"
+           style="display:flex; flex-direction:column; align-items:center; gap:6px; text-decoration:none;">
+          <div style="width:56px; height:56px; background:var(--gold); border-radius:50%; display:flex; align-items:center; justify-content:center; transition:transform 0.2s, box-shadow 0.2s;"
+               onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 20px rgba(232,180,42,0.4)'"
+               onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.266.069 1.646.069 4.85 0 3.204-.012 3.584-.069 4.85-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.646-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zM12 16a4 4 0 110-8 4 4 0 010 8zm4.965-10.322a1.44 1.44 0 112.881.001 1.44 1.44 0 01-2.881-.001z"/></svg>
+          </div>
+          <span style="font-size:12px; font-weight:700; color:var(--brown); margin-top:2px;">Instagram</span>
+          <span style="font-size:11px; color:var(--brown-mid);">@dropsmile.gift</span>
+        </a>
+
+        <!-- TikTok -->
+        <a href="https://www.tiktok.com/@dropsmile.gift" target="_blank" rel="noopener"
+           style="display:flex; flex-direction:column; align-items:center; gap:6px; text-decoration:none;">
+          <div style="width:56px; height:56px; background:var(--gold); border-radius:50%; display:flex; align-items:center; justify-content:center; transition:transform 0.2s, box-shadow 0.2s;"
+               onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 20px rgba(232,180,42,0.4)'"
+               onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V9.34a8.16 8.16 0 004.77 1.52V7.41a4.85 4.85 0 01-1-.72z"/></svg>
+          </div>
+          <span style="font-size:12px; font-weight:700; color:var(--brown); margin-top:2px;">TikTok</span>
+          <span style="font-size:11px; color:var(--brown-mid);">@dropsmile.gift</span>
+        </a>
+
+        <!-- WhatsApp -->
+        <a href="https://wa.me/6281229658701?text=Halo!%20Saya%20mau%20lihat%20lebih%20banyak%20portfolio%20Dropsmile" target="_blank" rel="noopener"
+           style="display:flex; flex-direction:column; align-items:center; gap:6px; text-decoration:none;">
+          <div style="width:56px; height:56px; background:var(--gold); border-radius:50%; display:flex; align-items:center; justify-content:center; transition:transform 0.2s, box-shadow 0.2s;"
+               onmouseover="this.style.transform='translateY(-4px)';this.style.boxShadow='0 8px 20px rgba(232,180,42,0.4)'"
+               onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='none'">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </div>
+          <span style="font-size:12px; font-weight:700; color:var(--brown); margin-top:2px;">WhatsApp</span>
+          <span style="font-size:11px; color:var(--brown-mid);">081229658701</span>
+        </a>
+
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1831,42 +1871,42 @@
     <div class="faq-item" role="listitem">
       <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
         Berapa minimal order di Dropsmile?
-        <span class="faq-icon" aria-hidden="true">+</span>
+        <svg class="faq-icon" width="28" height="28" viewBox="0 0 28 28" aria-hidden="true" style="flex-shrink:0; transition:transform 0.25s ease;"><circle cx="14" cy="14" r="14" fill="var(--gold-light)"/><line x1="14" y1="9" x2="14" y2="19" stroke="var(--gold-dark)" stroke-width="2" stroke-linecap="round"/><line x1="9" y1="14" x2="19" y2="14" stroke="var(--gold-dark)" stroke-width="2" stroke-linecap="round"/></svg>
       </button>
       <div class="faq-a"><span class="highlight">Tidak ada minimal order!</span> Pesan 1 single flower pun kami layani dengan sepenuh hati. Budget mulai Rp 10.000 sudah bisa dapat buket cantik.</div>
     </div>
     <div class="faq-item" role="listitem">
       <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
         Apakah bisa custom warna atau jenis bunga?
-        <span class="faq-icon" aria-hidden="true">+</span>
+        <svg class="faq-icon" width="28" height="28" viewBox="0 0 28 28" aria-hidden="true" style="flex-shrink:0; transition:transform 0.25s ease;"><circle cx="14" cy="14" r="14" fill="var(--gold-light)"/><line x1="14" y1="9" x2="14" y2="19" stroke="var(--gold-dark)" stroke-width="2" stroke-linecap="round"/><line x1="9" y1="14" x2="19" y2="14" stroke="var(--gold-dark)" stroke-width="2" stroke-linecap="round"/></svg>
       </button>
       <div class="faq-a">Tentu bisa! Justru kami <span class="highlight">spesialis custom order</span>. Chat kami via WhatsApp dan ceritakan keinginanmu — warna, jenis bunga, tema, ukuran, budget — kami carikan solusi terbaiknya.</div>
     </div>
     <div class="faq-item" role="listitem">
       <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
         Berapa lama waktu pembuatan?
-        <span class="faq-icon" aria-hidden="true">+</span>
+        <svg class="faq-icon" width="28" height="28" viewBox="0 0 28 28" aria-hidden="true" style="flex-shrink:0; transition:transform 0.25s ease;"><circle cx="14" cy="14" r="14" fill="var(--gold-light)"/><line x1="14" y1="9" x2="14" y2="19" stroke="var(--gold-dark)" stroke-width="2" stroke-linecap="round"/><line x1="9" y1="14" x2="19" y2="14" stroke="var(--gold-dark)" stroke-width="2" stroke-linecap="round"/></svg>
       </button>
       <div class="faq-a">Standar kami <span class="highlight">siap dalam 24 jam</span> setelah konfirmasi. Untuk order mendadak (H-1 bahkan pagi hari wisuda), hubungi kami dulu ya — kami usahakan semaksimal mungkin!</div>
     </div>
     <div class="faq-item" role="listitem">
       <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
         Apakah ada pengiriman?
-        <span class="faq-icon" aria-hidden="true">+</span>
+        <svg class="faq-icon" width="28" height="28" viewBox="0 0 28 28" aria-hidden="true" style="flex-shrink:0; transition:transform 0.25s ease;"><circle cx="14" cy="14" r="14" fill="var(--gold-light)"/><line x1="14" y1="9" x2="14" y2="19" stroke="var(--gold-dark)" stroke-width="2" stroke-linecap="round"/><line x1="9" y1="14" x2="19" y2="14" stroke="var(--gold-dark)" stroke-width="2" stroke-linecap="round"/></svg>
       </button>
       <div class="faq-a">Kami melayani <span class="highlight">area Pekalongan dan sekitarnya</span>. Untuk pengiriman luar kota, silakan konfirmasi via WhatsApp untuk informasi ongkos kirim dan ketersediaan.</div>
     </div>
     <div class="faq-item" role="listitem">
       <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
         Bagaimana cara pembayaran?
-        <span class="faq-icon" aria-hidden="true">+</span>
+        <svg class="faq-icon" width="28" height="28" viewBox="0 0 28 28" aria-hidden="true" style="flex-shrink:0; transition:transform 0.25s ease;"><circle cx="14" cy="14" r="14" fill="var(--gold-light)"/><line x1="14" y1="9" x2="14" y2="19" stroke="var(--gold-dark)" stroke-width="2" stroke-linecap="round"/><line x1="9" y1="14" x2="19" y2="14" stroke="var(--gold-dark)" stroke-width="2" stroke-linecap="round"/></svg>
       </button>
       <div class="faq-a">Kami menerima transfer bank, e-wallet (GoPay, OVO, DANA), dan COD khusus area tertentu. <span class="highlight">Bayar setelah buket jadi dan Kamu setuju</span> — aman dan transparan.</div>
     </div>
     <div class="faq-item" role="listitem">
       <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
         Apakah foto produk dikirim sebelum pengiriman?
-        <span class="faq-icon" aria-hidden="true">+</span>
+        <svg class="faq-icon" width="28" height="28" viewBox="0 0 28 28" aria-hidden="true" style="flex-shrink:0; transition:transform 0.25s ease;"><circle cx="14" cy="14" r="14" fill="var(--gold-light)"/><line x1="14" y1="9" x2="14" y2="19" stroke="var(--gold-dark)" stroke-width="2" stroke-linecap="round"/><line x1="9" y1="14" x2="19" y2="14" stroke="var(--gold-dark)" stroke-width="2" stroke-linecap="round"/></svg>
       </button>
       <div class="faq-a"><span class="highlight">Selalu!</span> Kami selalu kirimkan foto buket yang sudah jadi via WhatsApp sebelum dikirim ke lokasimu — supaya kamu puas dan yakin dulu 💕</div>
     </div>
@@ -1876,7 +1916,7 @@
 <!-- ─── 10. FINAL CTA ─── -->
 <section id="cta">
   <span class="cta-flower" role="img" aria-label="bunga">🌸</span>
-  <h2 class="serif">Buat Momen Wisudanya<br>Tak <em>Terlupakan</em></h2>
+  <h2 class="serif">Setiap Hadiah Memiliki Kisahnya,<br>Buat Dia <span class="highlight-gold">Tersenyum</span><br>Ketika Mengingatnya</h2>
   <p>Yuk, mulai chat sekarang! Ceritakan wisuda impianmu dan biarkan kami wujudkan buket yang sempurna untuknya.</p>
   <a href="https://wa.me/6281229658701?text=Saya%20mau%20pesan%20buket%20wisuda%20premium%20dengan%20kode%20wisuda55%20%F0%9F%8C8%20boleh%20minta%20info%20lengkapnya%3F" class="cta-btn" target="_blank" rel="noopener">
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -1884,7 +1924,7 @@
     </svg>
     Chat WhatsApp Sekarang
   </a>
-  <p class="cta-note">Jangan Lupa  Tersenyum</p>
+  <p class="cta-note">Jangan Lupa Tersenyum</p>
 </section>
 
 <!-- ─── FOOTER ─── -->
@@ -1892,285 +1932,186 @@
   <div class="footer-brand">Dropsmile.gift</div>
   <p>
     Florist &amp; Buket Pekalongan sejak 2021<br>
-    dropsmile.gift · Pekalongan, Jawa Tengah<br><br>
-    © 2026 Dropsmile. All rights reserved.
+    dropsmile.gift · Pekalongan, Jawa Tengah
   </p>
+  <div style="display:flex; justify-content:center; gap:16px; margin: 20px 0;">
+    <a href="https://www.instagram.com/dropsmile.gift/" target="_blank" rel="noopener"
+       style="width:38px; height:38px; border-radius:50%; border:1.5px solid rgba(255,255,255,0.25); display:flex; align-items:center; justify-content:center; transition:border-color 0.2s, background 0.2s;"
+       onmouseover="this.style.borderColor='var(--gold)';this.style.background='rgba(232,180,42,0.12)'"
+       onmouseout="this.style.borderColor='rgba(255,255,255,0.25)';this.style.background='transparent'"
+       aria-label="Instagram Dropsmile">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="rgba(255,255,255,0.65)"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.266.069 1.646.069 4.85 0 3.204-.012 3.584-.069 4.85-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.646-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zM12 16a4 4 0 110-8 4 4 0 010 8zm4.965-10.322a1.44 1.44 0 112.881.001 1.44 1.44 0 01-2.881-.001z"/></svg>
+    </a>
+    <a href="https://www.tiktok.com/@dropsmile.gift" target="_blank" rel="noopener"
+       style="width:38px; height:38px; border-radius:50%; border:1.5px solid rgba(255,255,255,0.25); display:flex; align-items:center; justify-content:center; transition:border-color 0.2s, background 0.2s;"
+       onmouseover="this.style.borderColor='var(--gold)';this.style.background='rgba(232,180,42,0.12)'"
+       onmouseout="this.style.borderColor='rgba(255,255,255,0.25)';this.style.background='transparent'"
+       aria-label="TikTok Dropsmile">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="rgba(255,255,255,0.65)"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V9.34a8.16 8.16 0 004.77 1.52V7.41a4.85 4.85 0 01-1-.72z"/></svg>
+    </a>
+    <!-- Google Maps Location -->
+    <a href="https://maps.app.goo.gl/YpsHYf7LrMhcFHmdA" target="_blank" rel="noopener"
+       style="width:38px; height:38px; border-radius:50%; border:1.5px solid rgba(255,255,255,0.25); display:flex; align-items:center; justify-content:center; transition:border-color 0.2s, background 0.2s;"
+       onmouseover="this.style.borderColor='var(--gold)';this.style.background='rgba(232,180,42,0.12)'"
+       onmouseout="this.style.borderColor='rgba(255,255,255,0.25)';this.style.background='transparent'"
+       aria-label="Lokasi Dropsmile di Google Maps">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="rgba(255,255,255,0.65)"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+    </a>
+  </div>
+  <p style="margin-top:0;">© 2026 Dropsmile. All rights reserved.</p>
 </footer>
 
 <script>
-  /* ─── FAQ Toggle ─── */
-  function toggleFaq(btn) {
-    var icon = btn.querySelector('.faq-icon');
-    var answer = btn.nextElementSibling;
-    var isOpen = answer.classList.contains('open');
-    document.querySelectorAll('.faq-a.open').forEach(function(el) {
-      el.classList.remove('open');
-      el.previousElementSibling.querySelector('.faq-icon').classList.remove('open');
-      el.previousElementSibling.setAttribute('aria-expanded', 'false');
-    });
-    if (!isOpen) {
-      answer.classList.add('open');
-      icon.classList.add('open');
-      btn.setAttribute('aria-expanded', 'true');
-    }
-  }
+/* ═══════════════════════════════════════════
+   FAQ TOGGLE
+═══════════════════════════════════════════ */
+function toggleSocialMedia() {
+  var section = document.getElementById('socialMediaSection');
+  var arrow   = document.getElementById('portfolioArrow');
+  var isOpen  = section.style.display === 'flex' || section.style.display === 'block';
 
-  /* ─── Countdown Timer ─── */
-  (function () {
-    var end = new Date('2026-06-30T23:59:59');
-    function update() {
-      var now = new Date();
-      var diff = Math.max(0, end - now);
-      var d = Math.floor(diff / 86400000);
-      var h = Math.floor((diff % 86400000) / 3600000);
-      var m = Math.floor((diff % 3600000) / 60000);
-      var s = Math.floor((diff % 60000) / 1000);
-      function pad(n) { return String(n).padStart(2, '0'); }
-      var dEl = document.getElementById('cd-d');
-      var hEl = document.getElementById('cd-h');
-      var mEl = document.getElementById('cd-m');
-      var sEl = document.getElementById('cd-s');
-      if (dEl) dEl.textContent = pad(d);
-      if (hEl) hEl.textContent = pad(h);
-      if (mEl) mEl.textContent = pad(m);
-      if (sEl) sEl.textContent = pad(s);
-    }
-    update();
-    setInterval(update, 1000);
-  })();
-</script>
-
-
-<script>
-  // ════════════════════════════════════════
-  // PROMO URGENCY SYSTEM — Sequential Pop-ups
-  // Reset: 06:00 | Start: 2/10 | Increment: +1 every 2.5 hours
-  // ════════════════════════════════════════
-
-  // Random Indonesian names for authenticity
-  const randomNames = [
-    'Bagas', 'Rini', 'Doni', 'Siti', 'Ahmad', 'Dewi', 'Budi', 'Maya',
-    'Andi', 'Lina', 'Hendra', 'Putri', 'Reza', 'Novi', 'Tarno', 'Siska',
-    'Joko', 'Eka', 'Bambang', 'Ratih', 'Yudi', 'Nana', 'Riski', 'Dina'
-  ];
-
-  // ── Calculate current progress based on time ──
-  function getProgressCount() {
-    const now = new Date();
-    const resetHour = 6; // Reset at 06:00
-    
-    let hoursElapsed = now.getHours() - resetHour;
-    if (hoursElapsed < 0) hoursElapsed += 24;
-    
-    // Increment +1 setiap 2.5 jam
-    let increment = Math.floor(hoursElapsed / 2.5);
-    let count = 2 + increment; // Start from 2
-    return Math.min(count, 10);
+  if (isOpen) {
+    section.style.opacity = '0';
+    arrow.style.transform = 'rotate(0deg)';
+    setTimeout(function() { section.style.display = 'none'; }, 300);
+  } else {
+    section.style.display = 'flex';
+    section.style.flexDirection = 'column';
+    setTimeout(function() { section.style.opacity = '1'; }, 10);
+    arrow.style.transform = 'rotate(90deg)';
   }
+}
 
-  // ── Random name picker ──
-  function getRandomName() {
-    return randomNames[Math.floor(Math.random() * randomNames.length)];
-  }
-
-  // ── Show toast notification ──
-  function showToast(title, message, duration = 5000) {
-    const container = document.getElementById('toastContainer');
-    
-    const toast = document.createElement('div');
-    toast.className = 'toast';
-    toast.innerHTML = \`
-      <div class="toast-title">\${title}</div>
-      <div class="toast-message">\${message}</div>
-    \`;
-    
-    container.appendChild(toast);
-    
-    // Auto remove after duration
-    setTimeout(() => {
-      toast.classList.add('removing');
-      setTimeout(() => toast.remove(), 300);
-    }, duration);
-  }
-
-  // ── Sequential pop-ups on page load ──
-  function triggerSequentialNotifs() {
-    // Check if already shown in this session
-    const sessionKey = 'dropsmile_notif_' + new Date().toDateString();
-    
-    if (sessionStorage.getItem(sessionKey)) {
-      return; // Don't repeat in same session/day
-    }
-    
-    const currentCount = getProgressCount();
-    const remainingSlots = 10 - currentCount;
-    const randomName = getRandomName();
-    
-    // ── POP-UP 1 (Instant) ──
-    setTimeout(() => {
-      showToast(
-        '✅ Kemarin promo sold out',
-        \`Kita masih promo, \${currentCount} pembeli sudah pesan\`,
-        5000
-      );
-    }, 500);
-    
-    // ── POP-UP 2 (3-4 menit) ──
-    const notif2Delay = Math.random() * (240000 - 180000) + 180000; // 3-4 menit
-    setTimeout(() => {
-      showToast(
-        \`📦 \${randomName} baru memesan Rp 55rb\`,
-        \`Sisa \${remainingSlots} slot 🎓\`,
-        5000
-      );
-    }, notif2Delay);
-    
-    // ── POP-UP 3 (6-8 menit) ──
-    const notif3Delay = Math.random() * (480000 - 360000) + 360000; // 6-8 menit
-    setTimeout(() => {
-      showToast(
-        '💬 Customer baru sedang mengirim pesan',
-        'Jangan sampai kehabisan! 🚀',
-        5000
-      );
-    }, notif3Delay);
-    
-    // Mark as shown
-    sessionStorage.setItem(sessionKey, true);
-  }
-
-  // Trigger on page load
-  window.addEventListener('load', triggerSequentialNotifs);
-
-  /* ════════════════════════════════════════
-     SALES PROGRESS & NOTIFICATION SYSTEM
-  ════════════════════════════════════════ */
-  
-  // RANDOM NAME GENERATOR
-  const firstNames = [
-    "Bagas", "Siti", "Rina", "Dika", "Aulia", 
-    "Rani", "Tito", "Maya", "Arif", "Dewi",
-    "Roni", "Eka", "Putri", "Budi", "Lina",
-    "Farhan", "Yuni", "Hendra", "Citra", "Yoga"
-  ];
-  
-  function getRandomName() {
-    return firstNames[Math.floor(Math.random() * firstNames.length)];
-  }
-  
-  // CALCULATE PROGRESS BASED ON TIME
-  function getProgressCount() {
-    const now = new Date();
-    const resetHour = 6;
-    
-    let hoursElapsed = now.getHours() - resetHour;
-    if (hoursElapsed < 0) hoursElapsed += 24;
-    
-    let increment = Math.floor(hoursElapsed / 2.5);
-    let count = 2 + increment;
-    
-    return Math.min(count, 10);
-  }
-  
-  // TOAST NOTIFICATION FUNCTION
-  function showToast(title, message, duration) {
-    if (!duration) duration = 5000;
-    const container = document.getElementById('toast-container');
-    const toast = document.createElement('div');
-    toast.className = 'toast';
-    
-    const closeBtn = '<button class="toast-close" onclick="if(this.parentElement) {this.parentElement.classList.add(' + "'remove'" + '); setTimeout(function() {if(this.parentElement) this.parentElement.remove();}.bind(this), 300);}">×</button>';
-    
-    toast.innerHTML = '<div class="toast-title">' + title + '</div>' +
-                      '<div class="toast-message">' + message + '</div>' +
-                      closeBtn;
-    
-    container.appendChild(toast);
-    
-    setTimeout(function() {
-      if (toast.parentElement) {
-        toast.classList.add('remove');
-        setTimeout(function() {
-          if (toast.parentElement) toast.remove();
-        }, 300);
-      }
-    }, duration);
-  }
-  
-  // UPDATE PROGRESS BAR VISUAL
-  function updateProgressBar() {
-    const count = getProgressCount();
-    const percentage = (count / 10) * 100;
-    
-    const progressBar = document.getElementById('progress-bar');
-    const progressText = document.getElementById('progress-text');
-    const progressPercent = document.getElementById('progress-percent');
-    
-    if (progressBar) {
-      progressBar.style.width = percentage + '%';
-    }
-    if (progressText) {
-      progressText.textContent = count + ' dari 10 pembeli';
-    }
-    if (progressPercent) {
-      progressPercent.textContent = Math.round(percentage) + '%';
-    }
-  }
-  
-  // TRIGGER SEQUENTIAL NOTIFICATIONS ON PAGE LOAD
-  function triggerNotifications() {
-    const sessionKey = 'notifShownSession_' + Math.random();
-    
-    if (sessionStorage.getItem(sessionKey)) {
-      return;
-    }
-    sessionStorage.setItem(sessionKey, true);
-    
-    const currentCount = getProgressCount();
-    const remaining = 10 - currentCount;
-    
-    // NOTIF 1 - Instant
-    setTimeout(function() {
-      showToast(
-        '✅ Kemarin promo sold out!',
-        'Hari ini kita promo lagi, ' + currentCount + ' pembeli sudah pesan "hari ini"',
-        5000
-      );
-    }, 100);
-    
-    // NOTIF 2 - After 3-4 minutes
-    const notif2Delay = (Math.random() * (240 - 180) + 180) * 1000;
-    setTimeout(function() {
-      const name = getRandomName();
-      showToast(
-        '🔔 ' + name + ' baru memesan Rp 45rb',
-        'Sisa ' + remaining + ' slot hari ini 🎓',
-        5000
-      );
-    }, notif2Delay);
-    
-    // NOTIF 3 - After 6-8 minutes
-    const notif3Delay = (Math.random() * (480 - 360) + 360) * 1000;
-    setTimeout(function() {
-      showToast(
-        '💬 Customer baru sedang mengirim pesan',
-        'Jangan sampai kehabisan! 🚀',
-        5000
-      );
-    }, notif3Delay);
-  }
-  
-  // INITIALIZE ON PAGE LOAD
-  window.addEventListener('load', function() {
-    updateProgressBar();
-    triggerNotifications();
+function toggleFaq(btn) {
+  var icon   = btn.querySelector('.faq-icon');
+  var answer = btn.nextElementSibling;
+  var isOpen = answer.classList.contains('open');
+  document.querySelectorAll('.faq-a.open').forEach(function(el) {
+    el.classList.remove('open');
+    el.previousElementSibling.querySelector('.faq-icon').classList.remove('open');
+    el.previousElementSibling.setAttribute('aria-expanded', 'false');
   });
-  
-  // Update progress bar setiap 1 menit
-  setInterval(updateProgressBar, 60000);
+  if (!isOpen) {
+    answer.classList.add('open');
+    icon.classList.add('open');
+    btn.setAttribute('aria-expanded', 'true');
+  }
+}
 
+/* ═══════════════════════════════════════════
+   PROGRESS BAR — Time-based (Reset 06:00, +1 per 2.5h)
+═══════════════════════════════════════════ */
+function getProgressCount() {
+  var now       = new Date();
+  var resetHour = 6;
+  var hoursElapsed = now.getHours() - resetHour;
+  if (hoursElapsed < 0) hoursElapsed += 24;
+  var increment = Math.floor(hoursElapsed / 2.5);
+  var count     = 2 + increment;
+  return Math.min(count, 10);
+}
+
+function updateProgressBar() {
+  var count      = getProgressCount();
+  var percentage = Math.round((count / 10) * 100);
+  var bar  = document.getElementById('progress-bar');
+  var text = document.getElementById('progress-text');
+  var pct  = document.getElementById('progress-percent');
+  if (bar)  bar.style.width  = percentage + '%';
+  if (text) text.textContent = count + ' dari 10 pembeli';
+  if (pct)  pct.textContent  = percentage + '%';
+}
+
+/* ═══════════════════════════════════════════
+   TOAST NOTIFICATION
+═══════════════════════════════════════════ */
+function showToast(title, message, duration) {
+  if (!duration) duration = 5000;
+  var container = document.getElementById('toast-container');
+  var toast = document.createElement('div');
+  toast.className = 'toast';
+  toast.innerHTML =
+    '<div class="toast-title">' + title + '</div>' +
+    '<div class="toast-message">' + message + '</div>' +
+    '<button class="toast-close" onclick="removeToast(this.parentElement)">×</button>';
+  container.appendChild(toast);
+  setTimeout(function() { removeToast(toast); }, duration);
+}
+
+function removeToast(toast) {
+  if (!toast || !toast.parentElement) return;
+  toast.classList.add('removing');
+  setTimeout(function() {
+    if (toast && toast.parentElement) toast.remove();
+  }, 280);
+}
+
+/* ═══════════════════════════════════════════
+   SEQUENTIAL POP-UP NOTIFICATIONS
+   Timing: 2s → 1min → 3min (psychologically optimized)
+═══════════════════════════════════════════ */
+var randomNames = [
+  'Bagas','Rini','Doni','Siti','Ahmad','Dewi','Budi','Maya',
+  'Andi','Lina','Hendra','Putri','Reza','Novi','Yudi','Dina',
+  'Eka','Citra','Farhan','Titi','Yoga','Rina','Arif','Lilis'
+];
+
+function getRandomName() {
+  return randomNames[Math.floor(Math.random() * randomNames.length)];
+}
+
+function triggerNotifications() {
+  var today      = new Date().toDateString();
+  var sessionKey = 'dropsmile_notif_' + today;
+
+  // Tampil setiap page load baru (tab baru / refresh)
+  // Cek sessionStorage — per tab session
+  if (sessionStorage.getItem(sessionKey)) return;
+  sessionStorage.setItem(sessionKey, '1');
+
+  var currentCount   = getProgressCount();
+  var remainingSlots = 10 - currentCount;
+  var name           = getRandomName();
+
+  // ─ NOTIF 1 — Instant (0.8s delay supaya page sudah render)
+  setTimeout(function() {
+    showToast(
+      '✅ Kemarin promo sold out',
+      'Hari ini kita promo lagi, ' + currentCount + ' pembeli sudah pesan hari ini',
+      5000
+    );
+  }, 800);
+
+  // ─ NOTIF 2 — 1 menit (generic FOMO - user baru liat produk)
+  setTimeout(function() {
+    showToast(
+      '💬 Customer baru sedang mengirim pesan',
+      'Jangan sampai kehabisan! 🚀',
+      5000
+    );
+  }, 60000);
+
+  // ─ NOTIF 3 — 3 menit (specific order - user sudah baca harga)
+  setTimeout(function() {
+    showToast(
+      '🔔 ' + name + ' baru memesan Rp 45rb',
+      'Sisa ' + remainingSlots + ' slot hari ini 🎓',
+      5000
+    );
+  }, 180000);
+}
+
+/* ═══════════════════════════════════════════
+   INIT ON LOAD
+═══════════════════════════════════════════ */
+window.addEventListener('load', function() {
+  updateProgressBar();
+  triggerNotifications();
+});
+
+// Update progress bar setiap menit (jika user stay lama)
+setInterval(updateProgressBar, 60000);
 
 </script>
-
 </body>
 </html>
