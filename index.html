@@ -500,30 +500,39 @@ s.price-strike {
   top: 0; left: 0; right: 0;
 }
 .proof-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 6px;
-  max-width: 480px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0;
+  max-width: 420px;
   margin: 0 auto;
 }
 .proof-item {
   text-align: center;
-  padding: 20px 8px;
-  background: rgba(255,255,255,0.07);
-  border-radius: 12px;
+  padding: 14px 20px;
+  flex: 1;
+  position: relative;
+}
+.proof-item:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: 0; top: 20%; bottom: 20%;
+  width: 1px;
+  background: rgba(255,255,255,0.15);
 }
 .proof-num {
   font-family: 'Playfair Display', serif;
-  font-size: 34px;
+  font-size: 24px;
   font-weight: 700;
   color: var(--gold);
-  line-height: 1;
-  margin-bottom: 6px;
+  line-height: 1.1;
+  margin-bottom: 4px;
 }
 .proof-label {
-  font-size: 11px;
-  color: rgba(255,255,255,0.55);
-  line-height: 1.4;
+  font-size: 10px;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.3;
+  letter-spacing: 0.02em;
 }
 .proof-trust {
   display: flex;
@@ -903,8 +912,113 @@ s.price-strike {
 /* ═══════════════════════════════════════════
    7. GALERI
 ═══════════════════════════════════════════ */
-#galeri { background: var(--ivory); }
-.galeri-grid {
+/* ═══════════════════════════════════════════
+   GALLERY — Infinite horizontal scroll marquee
+═══════════════════════════════════════════ */
+#galeri {
+  background: var(--ivory);
+  padding: 64px 0;
+  overflow: hidden;
+}
+#galeri .max-w { padding: 0 20px; }
+
+.galeri-marquee-wrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  cursor: grab;
+  user-select: none;
+}
+.galeri-marquee-wrap:active { cursor: grabbing; }
+
+/* Fade edges */
+.galeri-marquee-wrap::before,
+.galeri-marquee-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 60px;
+  z-index: 2;
+  pointer-events: none;
+}
+.galeri-marquee-wrap::before {
+  left: 0;
+  background: linear-gradient(to right, var(--ivory), transparent);
+}
+.galeri-marquee-wrap::after {
+  right: 0;
+  background: linear-gradient(to left, var(--ivory), transparent);
+}
+
+/* Each row track */
+.galeri-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+  width: max-content;
+  animation: none;
+}
+
+/* Individual photo item */
+.galeri-photo {
+  flex-shrink: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  height: 200px;
+  position: relative;
+}
+.galeri-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
+}
+.galeri-photo:hover img,
+.galeri-photo.touched img {
+  transform: scale(1.08);
+}
+
+/* Varied widths for masonry feel */
+.galeri-photo.w1 { width: 150px; }   /* portrait */
+.galeri-photo.w2 { width: 200px; }   /* square-ish */
+.galeri-photo.w3 { width: 280px; }   /* landscape */
+.galeri-photo.w4 { width: 240px; }   /* wide */
+.galeri-photo.w5 { width: 170px; }   /* slim portrait */
+
+/* Row 2 different height */
+.galeri-row-2 .galeri-photo { height: 180px; }
+
+/* Placeholder colors */
+.gph-1 { background: linear-gradient(135deg,#F7D0DB,#E8A5B0); }
+.gph-2 { background: linear-gradient(135deg,#FAE0C8,#EDBB8A); }
+.gph-3 { background: linear-gradient(135deg,#D4EAD0,#9FCA9A); }
+.gph-4 { background: linear-gradient(135deg,#D8D0F0,#B0A0E0); }
+.gph-5 { background: linear-gradient(135deg,#F5E0D0,#E0A888); }
+.gph-6 { background: linear-gradient(135deg,#D0ECF0,#88C8D8); }
+.gph-7 { background: linear-gradient(135deg,#E8D0EC,#C888D8); }
+.gph-8 { background: linear-gradient(135deg,#E0ECD0,#A0CC88); }
+.gph-9 { background: linear-gradient(135deg,#FBF0C8,#E8B42A); }
+.galeri-ph-inner {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 32px;
+}
+
+@media (min-width: 768px) {
+  .galeri-photo { height: 240px; }
+  .galeri-row-2 .galeri-photo { height: 220px; }
+  .galeri-photo.w1 { width: 190px; }
+  .galeri-photo.w2 { width: 250px; }
+  .galeri-photo.w3 { width: 340px; }
+  .galeri-photo.w4 { width: 300px; }
+  .galeri-photo.w5 { width: 210px; }
+  .galeri-marquee-wrap::before,
+  .galeri-marquee-wrap::after { width: 100px; }
+}
+
+
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 6px;
@@ -1255,9 +1369,9 @@ footer p { font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.8; }
 ═══════════════════════════════════════════ */
 @media (min-width: 768px) {
   .max-w { max-width: 720px; }
-  .proof-grid { max-width: 720px; gap: 12px; }
-  .proof-num  { font-size: 44px; }
-  .proof-item { padding: 28px 16px; }
+  .proof-grid { max-width: 480px; }
+  .proof-num  { font-size: 26px; }
+  .proof-item { padding: 16px 24px; }
   .produk-grid { max-width: 720px; grid-template-columns: repeat(4,1fr); gap: 16px; }
   .produk-card:first-child { grid-column: 1 / -1; grid-template-columns: 260px 1fr; }
   .step-list { max-width: 720px; flex-direction: row; gap: 0; align-items: flex-start; }
@@ -1347,9 +1461,9 @@ footer p { font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.8; }
 
   /* Proof */
   #proof { padding: 56px 60px; }
-  .proof-grid { max-width: 1100px; gap: 16px; }
-  .proof-num  { font-size: 52px; }
-  .proof-trust { gap: 40px; margin-top: 32px; }
+  .proof-grid { max-width: 520px; }
+  .proof-num  { font-size: 28px; }
+  .proof-trust { gap: 40px; margin-top: 24px; }
   .trust-badge { font-size: 14px; }
 
   /* Produk */
@@ -1503,8 +1617,8 @@ footer p { font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.8; }
       <div class="proof-label">Rating Kepuasan</div>
     </div>
     <div class="proof-item">
-      <div class="proof-num">Sejak<br>2021</div>
-      <div class="proof-label">Dipercaya Pekalongan</div>
+      <div class="proof-num">2021</div>
+      <div class="proof-label">Berdiri & Dipercaya</div>
     </div>
   </div>
   <div class="proof-trust">
@@ -1725,18 +1839,35 @@ footer p { font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.8; }
     <h2 class="section-title">Karya Kami<br>yang Sudah Terkirim</h2>
     <p class="section-sub">Setiap buket dibuat dengan cinta dan perhatian penuh 💕</p>
   </div>
-  <div class="galeri-grid" role="list" aria-label="Galeri buket Dropsmile">
-    <!-- Ganti div placeholder dengan <img> tag foto Anda -->
-    <!-- [EDIT 8] Galeri foto — simpan foto di folder foto/ dengan nama galeri-1.jpg sampai galeri-9.jpg -->
-    <div class="galeri-item tall" role="listitem"><img src="foto/galeri-1.jpg" alt="Buket Dropsmile 1" style="width:100%;height:100%;object-fit:cover" onerror="this.outerHTML='<div class=&quot;galeri-item-ph g1&quot;>🌹</div>'"></div>
-    <div class="galeri-item" role="listitem"><img src="foto/galeri-2.jpg" alt="Buket Dropsmile 2" style="width:100%;height:100%;object-fit:cover" onerror="this.outerHTML='<div class=&quot;galeri-item-ph g2&quot;>🌻</div>'"></div>
-    <div class="galeri-item" role="listitem"><img src="foto/galeri-3.jpg" alt="Buket Dropsmile 3" style="width:100%;height:100%;object-fit:cover" onerror="this.outerHTML='<div class=&quot;galeri-item-ph g3&quot;>🌷</div>'"></div>
-    <div class="galeri-item" role="listitem"><img src="foto/galeri-4.jpg" alt="Buket Dropsmile 4" style="width:100%;height:100%;object-fit:cover" onerror="this.outerHTML='<div class=&quot;galeri-item-ph g4&quot;>💐</div>'"></div>
-    <div class="galeri-item" role="listitem"><img src="foto/galeri-5.jpg" alt="Buket Dropsmile 5" style="width:100%;height:100%;object-fit:cover" onerror="this.outerHTML='<div class=&quot;galeri-item-ph g5&quot;>🌸</div>'"></div>
-    <div class="galeri-item tall" role="listitem"><img src="foto/galeri-6.jpg" alt="Buket Dropsmile 6" style="width:100%;height:100%;object-fit:cover" onerror="this.outerHTML='<div class=&quot;galeri-item-ph g6&quot;>🌺</div>'"></div>
-    <div class="galeri-item" role="listitem"><img src="foto/galeri-7.jpg" alt="Buket Dropsmile 7" style="width:100%;height:100%;object-fit:cover" onerror="this.outerHTML='<div class=&quot;galeri-item-ph g7&quot;>🌼</div>'"></div>
-    <div class="galeri-item" role="listitem"><img src="foto/galeri-8.jpg" alt="Buket Dropsmile 8" style="width:100%;height:100%;object-fit:cover" onerror="this.outerHTML='<div class=&quot;galeri-item-ph g8&quot;>💮</div>'"></div>
-    <div class="galeri-item" role="listitem"><img src="foto/galeri-9.jpg" alt="Buket Dropsmile 9" style="width:100%;height:100%;object-fit:cover" onerror="this.outerHTML='<div class=&quot;galeri-item-ph g9&quot;>🏵️</div>'"></div>
+  <!-- GALLERY MARQUEE — tambah foto galeri-1.jpg sampai galeri-18.jpg di folder foto/ -->
+  <!-- ROW 1 -->
+  <div class="galeri-marquee-wrap" id="galeriRow1Wrap">
+    <div class="galeri-row" id="galeriRow1">
+      <div class="galeri-photo w3"><img src="foto/galeri-1.jpg"  alt="Buket 1"  onerror="this.parentElement.innerHTML='<div class=\'galeri-ph-inner gph-1\'>🌹</div>'"></div>
+      <div class="galeri-photo w1"><img src="foto/galeri-2.jpg"  alt="Buket 2"  onerror="this.parentElement.innerHTML='<div class=\'galeri-ph-inner gph-2\'>🌻</div>'"></div>
+      <div class="galeri-photo w2"><img src="foto/galeri-3.jpg"  alt="Buket 3"  onerror="this.parentElement.innerHTML='<div class=\'galeri-ph-inner gph-3\'>🌷</div>'"></div>
+      <div class="galeri-photo w4"><img src="foto/galeri-4.jpg"  alt="Buket 4"  onerror="this.parentElement.innerHTML='<div class=\'galeri-ph-inner gph-4\'>💐</div>'"></div>
+      <div class="galeri-photo w5"><img src="foto/galeri-5.jpg"  alt="Buket 5"  onerror="this.parentElement.innerHTML='<div class=\'galeri-ph-inner gph-5\'>🌸</div>'"></div>
+      <div class="galeri-photo w2"><img src="foto/galeri-6.jpg"  alt="Buket 6"  onerror="this.parentElement.innerHTML='<div class=\'galeri-ph-inner gph-6\'>🌺</div>'"></div>
+      <div class="galeri-photo w3"><img src="foto/galeri-7.jpg"  alt="Buket 7"  onerror="this.parentElement.innerHTML='<div class=\'galeri-ph-inner gph-7\'>🌼</div>'"></div>
+      <div class="galeri-photo w1"><img src="foto/galeri-8.jpg"  alt="Buket 8"  onerror="this.parentElement.innerHTML='<div class=\'galeri-ph-inner gph-8\'>💮</div>'"></div>
+      <div class="galeri-photo w4"><img src="foto/galeri-9.jpg"  alt="Buket 9"  onerror="this.parentElement.innerHTML='<div class=\'galeri-ph-inner gph-9\'>🏵️</div>'"></div>
+    </div>
+  </div>
+
+  <!-- ROW 2 (arah berlawanan) -->
+  <div class="galeri-marquee-wrap" id="galeriRow2Wrap">
+    <div class="galeri-row galeri-row-2" id="galeriRow2">
+      <div class="galeri-photo w2"><img src="foto/galeri-10.jpg" alt="Buket 10" onerror="this.parentElement.innerHTML='<div class=\'galeri-ph-inner gph-5\'>🌸</div>'"></div>
+      <div class="galeri-photo w3"><img src="foto/galeri-11.jpg" alt="Buket 11" onerror="this.parentElement.innerHTML='<div class=\'galeri-ph-inner gph-6\'>🌺</div>'"></div>
+      <div class="galeri-photo w1"><img src="foto/galeri-12.jpg" alt="Buket 12" onerror="this.parentElement.innerHTML='<div class=\'galeri-ph-inner gph-7\'>🌼</div>'"></div>
+      <div class="galeri-photo w4"><img src="foto/galeri-13.jpg" alt="Buket 13" onerror="this.parentElement.innerHTML='<div class=\'galeri-ph-inner gph-8\'>💮</div>'"></div>
+      <div class="galeri-photo w5"><img src="foto/galeri-14.jpg" alt="Buket 14" onerror="this.parentElement.innerHTML='<div class=\'galeri-ph-inner gph-9\'>🏵️</div>'"></div>
+      <div class="galeri-photo w3"><img src="foto/galeri-15.jpg" alt="Buket 15" onerror="this.parentElement.innerHTML='<div class=\'galeri-ph-inner gph-1\'>🌹</div>'"></div>
+      <div class="galeri-photo w2"><img src="foto/galeri-16.jpg" alt="Buket 16" onerror="this.parentElement.innerHTML='<div class=\'galeri-ph-inner gph-2\'>🌻</div>'"></div>
+      <div class="galeri-photo w1"><img src="foto/galeri-17.jpg" alt="Buket 17" onerror="this.parentElement.innerHTML='<div class=\'galeri-ph-inner gph-3\'>🌷</div>'"></div>
+      <div class="galeri-photo w4"><img src="foto/galeri-18.jpg" alt="Buket 18" onerror="this.parentElement.innerHTML='<div class=\'galeri-ph-inner gph-4\'>💐</div>'"></div>
+    </div>
   </div>
   <div style="text-align:center; margin-top: 28px;">
     <button class="btn-secondary-dark" id="portfolioBtn" onclick="toggleSocialMedia()" style="display:inline-flex; align-items:center; gap:10px;">
@@ -2109,8 +2240,102 @@ window.addEventListener('load', function() {
   triggerNotifications();
 });
 
-// Update progress bar setiap menit (jika user stay lama)
-setInterval(updateProgressBar, 60000);
+/* ═══════════════════════════════════════════
+   GALLERY — Infinite marquee + drag + touch zoom
+═══════════════════════════════════════════ */
+(function() {
+  function initMarquee(rowId, wrapId, speed, direction) {
+    var row  = document.getElementById(rowId);
+    var wrap = document.getElementById(wrapId);
+    if (!row || !wrap) return;
+
+    // Clone row for seamless loop
+    var clone = row.cloneNode(true);
+    wrap.appendChild(clone);
+
+    var pos       = 0;
+    var paused    = false;
+    var dragging  = false;
+    var startX    = 0;
+    var startPos  = 0;
+    var raf       = null;
+    var rowW      = row.scrollWidth + 8; // +gap
+
+    function tick() {
+      if (!paused && !dragging) {
+        pos += speed * direction;
+        // Loop seamlessly
+        if (direction > 0 && pos >= rowW)  pos -= rowW;
+        if (direction < 0 && pos <= -rowW) pos += rowW;
+      }
+      row.style.transform   = 'translateX(' + (-pos) + 'px)';
+      clone.style.transform = 'translateX(' + (rowW - pos) + 'px)';
+      raf = requestAnimationFrame(tick);
+    }
+
+    // ── Mouse drag ──
+    wrap.addEventListener('mousedown', function(e) {
+      dragging = true;
+      startX   = e.clientX;
+      startPos = pos;
+      wrap.style.cursor = 'grabbing';
+    });
+    window.addEventListener('mousemove', function(e) {
+      if (!dragging) return;
+      var diff = startX - e.clientX;
+      pos = startPos + diff;
+      // Wrap around
+      pos = ((pos % rowW) + rowW) % rowW;
+    });
+    window.addEventListener('mouseup', function() {
+      if (!dragging) return;
+      dragging = false;
+      wrap.style.cursor = 'grab';
+    });
+
+    // ── Touch drag ──
+    var touchStartX = 0;
+    var touchStartPos = 0;
+    wrap.addEventListener('touchstart', function(e) {
+      touchStartX   = e.touches[0].clientX;
+      touchStartPos = pos;
+      paused = true;
+    }, { passive: true });
+    wrap.addEventListener('touchmove', function(e) {
+      var diff = touchStartX - e.touches[0].clientX;
+      pos = touchStartPos + diff;
+      pos = ((pos % rowW) + rowW) % rowW;
+    }, { passive: true });
+    wrap.addEventListener('touchend', function() {
+      paused = false;
+    }, { passive: true });
+
+    // ── Pause on hover ──
+    wrap.addEventListener('mouseenter', function() { paused = true; });
+    wrap.addEventListener('mouseleave', function() { paused = false; });
+
+    tick();
+  }
+
+  // Row 1: kiri ke kanan (speed 0.5), Row 2: kanan ke kiri (speed 0.6)
+  initMarquee('galeriRow1', 'galeriRow1Wrap', 0.5,  1);
+  initMarquee('galeriRow2', 'galeriRow2Wrap', 0.6, -1);
+
+  // ── Touch zoom on mobile ──
+  document.querySelectorAll('.galeri-photo').forEach(function(photo) {
+    photo.addEventListener('touchstart', function() {
+      this.classList.add('touched');
+    }, { passive: true });
+    photo.addEventListener('touchend', function() {
+      var el = this;
+      setTimeout(function() { el.classList.remove('touched'); }, 600);
+    }, { passive: true });
+  });
+})();
+
+
+
+
 
 </script>
 </body>
